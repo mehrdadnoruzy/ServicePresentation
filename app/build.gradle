@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
-        applicationId "com.home.serviceprovider"
+        applicationId "com.home.servicepresentation"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
