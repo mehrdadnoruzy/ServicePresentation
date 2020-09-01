@@ -7,7 +7,7 @@ import java.util.*
 @Parcelize
 data class HomeModel(
 
-    val promotions: List<PromotionsItem?>? = null,
+    val promotions: ArrayList<PromotionsItem?>? = null,
 
     val subTitle: String? = null,
 
@@ -15,7 +15,6 @@ data class HomeModel(
 
     val title: String? = null,
 
-	//@IgnoredOnParcel
 	//val activeServices: List<Any?>? = null
     val activeServices: List<String?>? = null
 ) : Parcelable

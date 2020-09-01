@@ -34,11 +34,6 @@ class Network() {
 
     class GetHomeTask(private val context: Context) : AsyncTask<String, Unit, BaseModel<HomeModel>>() {
 
-        override fun onPreExecute() {
-            super.onPreExecute()
-            //check
-        }
-
         override fun doInBackground(vararg url: String?): BaseModel<HomeModel>? {
             if (check(context)) {
                 val url = URL(url[0])
@@ -117,16 +112,13 @@ class Network() {
                 false
             }
         }
-        override fun onPostExecute(result: BaseModel<HomeModel>?) {
-            super.onPostExecute(result)
-        }
     }
 
     fun getCarwashData(){
-        GetCarwashTask().execute("\"$baseUrl/categories/carwash/services\"")
+        GetDetailTask().execute("\"$baseUrl/categories/carwash/services\"")
     }
 
-    class GetCarwashTask() : AsyncTask<String, Unit, String>() {
+    class GetDetailTask() : AsyncTask<String, Unit, String>() {
 
         override fun doInBackground(vararg url: String?): String? {
             val url = URL(url[0])
@@ -171,95 +163,4 @@ class Network() {
             }
         }
     }
-
-/*    private fun isConnectionOn(context: Context): Boolean {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            val network = connectivityManager.activeNetwork
-            val connection = connectivityManager.getNetworkCapabilities(network)
-            return connection != null && (
-                    connection.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-                            connection.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR))
-
-        } else {
-            val activeNetwork = connectivityManager.activeNetworkInfo
-            if (activeNetwork != null) {
-                return (activeNetwork.type == ConnectivityManager.TYPE_WIFI ||
-                        activeNetwork.type == ConnectivityManager.TYPE_MOBILE)
-            }
-            return false
-        }
-    }
-
-    private fun isInternetAvailable(): Boolean {
-        return try {
-            val timeoutMs = 1500
-            val sock = Socket()
-            val sockaddr = InetSocketAddress("8.8.8.8", 53)
-            sock.connect(sockaddr, timeoutMs)
-            sock.close()
-            true
-        } catch (e: IOException) {
-            false
-        }
-    }*/
-
-/*    class NoConnectivityException : IOException() {
-        override val message: String
-            get() = "اتصال به اینترنت را بررسی کنید و مجدد تلاش کنید"
-    }
-
-    class NoInternetException() : IOException() {
-        override val message: String
-            get() = "اتصال به اینترنت را بررسی کنید و مجدد تلاش کنید"
-    }
-
-    class TimeoutException() : SocketTimeoutException() {
-        override val message: String
-            get() = "پاسخی از سرور دریافت نشد"
-    }*/
-
-/*    fun httpGet(myURL: String?): String {
-
-        val inputStream:InputStream
-        val result:String
-
-        // create URL
-        val url:URL = URL(myURL)
-
-        // create HttpURLConnection
-        val conn:HttpURLConnection = url.openConnection() as HttpURLConnection
-
-        // make GET request to the given URL
-        conn.connect()
-
-        // receive response as inputStream
-        inputStream = conn.inputStream
-
-        // convert inputstream to string
-        if(inputStream != null) {
-            result = convertInputStreamToString(inputStream)
-            var homeModel = JSONObject(result)//.toString()
-        }
-        else
-            result = "Did not work!"
-
-        return result
-    }
-
-    private fun convertInputStreamToString(inputStream: InputStream): String {
-        val bufferedReader:BufferedReader? = BufferedReader(InputStreamReader(inputStream))
-
-        var line:String? = bufferedReader?.readLine()
-        var result:String = ""
-
-        while (line != null) {
-            result += line
-            line = bufferedReader?.readLine()
-        }
-
-        inputStream.close()
-        return result
-    }*/
 }

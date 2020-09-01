@@ -2,22 +2,26 @@ package com.home.servicepresentation.ui.main.presentation.fragments.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.home.servicepresentation.R
 import com.home.servicepresentation.ui.main.data.models.home.CategoriesItem
 import com.home.servicepresentation.ui.main.data.models.home.HomeModel
 import com.home.servicepresentation.ui.main.data.models.home.HomeObservable
+import com.home.servicepresentation.ui.main.data.models.home.PromotionsItem
 import com.home.servicepresentation.ui.main.presentation.fragments.base.BaseFragment
 import com.home.servicepresentation.ui.main.presentation.activities.main.MainActivity
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_middle.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
-class HomeFragment : BaseFragment(), Observer {
+class HomeFragment : BaseFragment(), Observer, AdapterListener {
 
     override fun getLayoutId(): Int = R.layout.home_fragment
-    private lateinit var adapter: HomeAdapter
+    private lateinit var adapterService: ServiceAdapter
+    private lateinit var adapterPromotion: PromotionAdapter
     companion object {
         fun newInstance() =
             HomeFragment()
@@ -33,15 +37,16 @@ class HomeFragment : BaseFragment(), Observer {
     }
 
     private fun setupServiceSegment() {
-        //recyclerViewService.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerViewService.setHasFixedSize(true)
-        //PagerSnapHelper().attachToRecyclerView(recyclerViewService)
-        adapter = HomeAdapter(arrayListOf())
-        recyclerViewService.adapter = adapter
+        adapterService = ServiceAdapter(arrayListOf(), this)
+        recyclerViewService.adapter = adapterService
         LinearSnapHelper().attachToRecyclerView(recyclerViewService)
     }
     private fun setupPromotionSegment() {
-
+        recyclerViewPromotion.setHasFixedSize(true)
+        adapterPromotion = PromotionAdapter(arrayListOf(), this)
+        recyclerViewPromotion.adapter = adapterPromotion
+        LinearSnapHelper().attachToRecyclerView(recyclerViewPromotion)
     }
 
     override fun update(o: Observable?, arg: Any?) {
@@ -59,21 +64,17 @@ class HomeFragment : BaseFragment(), Observer {
         tv_title.text = homeModel.title
         tv_subtitle.text = homeModel.subTitle
         renderListOfServices(homeModel.categories)
-        renderListOfPromotions()
-        //val url = URL("http://image10.bizrate-images.com/resize?sq=60&uid=2216744464")
-        //val bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream())
-        //imageView.setImageBitmap(bmp)
-
-
+        renderListOfPromotions(homeModel.promotions)
     }
 
     private fun renderListOfServices(categories: ArrayList<CategoriesItem?>?) {
-        adapter.addCategories(categories)
-        adapter.notifyDataSetChanged()
+        adapterService.addCategories(categories)
+        adapterService.notifyDataSetChanged()
     }
 
-    private fun renderListOfPromotions() {
-
+    private fun renderListOfPromotions(promotions: ArrayList<PromotionsItem?>?) {
+        adapterPromotion.addPromotions(promotions)
+        adapterPromotion.notifyDataSetChanged()
     }
 
     fun loadingViewShow(){
@@ -81,5 +82,9 @@ class HomeFragment : BaseFragment(), Observer {
     }
     fun loadingViewHide(){
         loading_view.hide()
+    }
+
+    override fun showMessage(msg: String) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 }

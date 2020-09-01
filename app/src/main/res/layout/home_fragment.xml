@@ -9,24 +9,38 @@
     tools:context=".ui.main.presentation.fragments.home.HomeFragment">
 
     <include
-        android:id="@+id/include"
+        android:id="@+id/include_header"
         layout="@layout/home_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/include3"
-        layout="@layout/home_middle"
+<!--    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:animateLayoutChanges="true"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        android:scrollbars="none"
+        android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/include_header">-->
+
+        <include
+            android:id="@+id/include_middle"
+            layout="@layout/home_middle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_header" />
+
+<!--    </androidx.core.widget.NestedScrollView>-->
 
     <include
-        android:id="@+id/include2"
+        android:id="@+id/include_footer"
         layout="@layout/home_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
