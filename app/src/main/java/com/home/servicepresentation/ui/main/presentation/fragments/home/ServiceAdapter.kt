@@ -1,5 +1,6 @@
 package com.home.servicepresentation.ui.main.presentation.fragments.home
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +8,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.home.servicepresentation.R
 import com.home.servicepresentation.ui.main.data.models.home.CategoriesItem
-import com.home.servicepresentation.ui.main.utils.MessagesListener
+import com.home.servicepresentation.ui.main.presentation.fragments.base.MessagesListener
 import com.home.servicepresentation.ui.main.utils.DownloadImageTask
-import com.home.servicepresentation.ui.main.utils.MyColors
 import kotlinx.android.synthetic.main.home_item_service.view.*
 
 
@@ -17,7 +17,7 @@ class ServiceAdapter(private val categories: ArrayList<CategoriesItem?>?, privat
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(categoriesItem: CategoriesItem?, itemClickListener: HomeAdapterItemClickListener, messenger: MessagesListener){
-            itemView.setOnClickListener { itemClickListener.itemServiceClicked() }
+            itemView.setOnClickListener { if (categoriesItem?.title?.toLowerCase()?.trim().equals("carwash"))itemClickListener.itemServiceClicked() }
             DownloadImageTask(itemView.image, messenger).execute(categoriesItem?.image?.originalUrl)
             itemView.title.text = categoriesItem?.title
             itemView.subtitle.text = categoriesItem?.subTitle
@@ -25,7 +25,7 @@ class ServiceAdapter(private val categories: ArrayList<CategoriesItem?>?, privat
             if (categoriesItem?.hasNewBadge == true)
                 itemView.has_new_badge.visibility = View.VISIBLE
             if (categoriesItem?.isActive != true) {
-                (itemView as CardView).setCardBackgroundColor(MyColors.GRAY)
+                (itemView as CardView).setCardBackgroundColor(Color.parseColor("#C1C1C1"))
                 (itemView as CardView).isEnabled = false
                 (itemView as CardView).isClickable = false
             }

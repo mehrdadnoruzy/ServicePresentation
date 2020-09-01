@@ -41,6 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="73dp"
             android:text="Hello,"
+            android:textAppearance="@style/normal_title"
+            android:lineSpacingExtra="0sp"
+            android:gravity="top"
             app:layout_constraintStart_toEndOf="@+id/iv_hello_hand"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,6 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Mitchell Cooper"
+            android:textAppearance="@style/normal_title_bold"
+            android:lineSpacingExtra="0sp"
+            android:gravity="top"
             app:layout_constraintStart_toStartOf="@+id/tv_hello"
             app:layout_constraintTop_toBottomOf="@+id/tv_hello" />
 
@@ -92,6 +98,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
+                android:textAppearance="@style/small_gray_text"
+                android:lineSpacingExtra="0sp"
+                android:gravity="top"
                 android:text="Set Your Address" />
 
             <ImageView

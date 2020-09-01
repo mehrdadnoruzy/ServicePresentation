@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.home.servicepresentation.R
 import com.home.servicepresentation.ui.main.data.models.home.PromotionsItem
-import com.home.servicepresentation.ui.main.utils.MessagesListener
+import com.home.servicepresentation.ui.main.presentation.fragments.base.MessagesListener
 import com.home.servicepresentation.ui.main.utils.DownloadImageTask
 import kotlinx.android.synthetic.main.home_item_service.view.*
 

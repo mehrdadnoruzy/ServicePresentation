@@ -15,19 +15,24 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="52dp"
-        app:srcCompat="@drawable/ic_arrow_left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_left" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="TextView"
+        android:gravity="top"
+        android:lineSpacingExtra="0sp"
+        android:textAppearance="@style/normal_title"
+        android:text="Carwash"
         app:layout_constraintBottom_toBottomOf="@+id/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/back"
@@ -40,7 +45,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="45dp"
-        app:srcCompat="@drawable/ic_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -54,6 +58,9 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:text="TextView"
+        android:gravity="top"
+        android:lineSpacingExtra="0sp"
+        android:textAppearance="@style/big_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image" />
@@ -68,6 +75,10 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:text="TextView"
+        android:textColor="#727991"
+        android:gravity="top"
+        android:lineSpacingExtra="0sp"
+        android:textAppearance="@style/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slogan" />
@@ -76,10 +87,18 @@
         android:id="@+id/recyclerViewGrid"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        tools:listitem="@layout/detaile_item_grid"/>
+        app:spanCount="2"
+        tools:listitem="@layout/detaile_item_grid" />
 </androidx.constraintlayout.widget.ConstraintLayout>

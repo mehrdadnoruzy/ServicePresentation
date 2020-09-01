@@ -163,6 +163,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/CallApiTask.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/DownloadImageTask.kt">
           <value>
             <set />

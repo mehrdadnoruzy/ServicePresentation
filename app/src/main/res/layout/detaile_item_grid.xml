@@ -5,6 +5,7 @@
     app:cardCornerRadius="16dp"
     android:elevation="6dp"
     app:cardElevation="8dp"
+    android:layout_margin="12dp"
     app:cardBackgroundColor="#E6EBFA"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -34,7 +35,9 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="TextView"
-            android:textColor="#08143C"
+            android:textAppearance="@style/normal_title"
+            android:lineSpacingExtra="0sp"
+            android:gravity="top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image" />
@@ -49,7 +52,9 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="TextView"
-            android:textColor="#08143C"
+            android:textAppearance="@style/sub_title"
+            android:lineSpacingExtra="0sp"
+            android:gravity="top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -64,7 +69,9 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="TextView"
-            android:textColor="#727991"
+            android:textAppearance="@style/description_cell"
+            android:lineSpacingExtra="0sp"
+            android:gravity="top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subtitle" />
@@ -78,7 +85,9 @@
             android:layout_marginTop="37dp"
             android:layout_marginBottom="40dp"
             android:text="TextView"
-            android:textColor="#22C8EF"
+            android:textAppearance="@style/price"
+            android:lineSpacingExtra="0sp"
+            android:gravity="top"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/short_description" />
@@ -90,7 +99,9 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="TextView"
-            android:textColor="#FB2F5F"
+            android:textAppearance="@style/discount"
+            android:lineSpacingExtra="0sp"
+            android:gravity="right|top"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/price"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +129,9 @@
                 android:id="@+id/discount_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
+                android:textAppearance="@style/new_and_discount_percentage"
+                android:lineSpacingExtra="0sp"
+                android:gravity="top"
                 android:text="%0" />
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

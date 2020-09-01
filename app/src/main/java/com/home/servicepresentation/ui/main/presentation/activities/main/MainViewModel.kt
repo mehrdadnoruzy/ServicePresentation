@@ -17,6 +17,7 @@ class MainViewModel(private val homeUsecase: HomeUsecase, private val detailUsec
 
     init {
         homeUsecase.homeObservable.addObserver(this)
+        detailUsecase.detailObservable.addObserver(this)
     }
 
     fun getHomeData(context: Context){

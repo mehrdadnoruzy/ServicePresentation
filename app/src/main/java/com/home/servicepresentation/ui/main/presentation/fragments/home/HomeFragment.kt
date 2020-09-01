@@ -1,5 +1,6 @@
 package com.home.servicepresentation.ui.main.presentation.fragments.home
 
+import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,14 +10,13 @@ import com.home.servicepresentation.ui.main.data.models.home.CategoriesItem
 import com.home.servicepresentation.ui.main.data.models.home.HomeModel
 import com.home.servicepresentation.ui.main.data.models.home.HomeObservable
 import com.home.servicepresentation.ui.main.data.models.home.PromotionsItem
-import com.home.servicepresentation.ui.main.presentation.fragments.base.BaseFragment
 import com.home.servicepresentation.ui.main.presentation.activities.main.MainActivity
+import com.home.servicepresentation.ui.main.presentation.fragments.base.BaseFragment
+import com.home.servicepresentation.ui.main.presentation.fragments.base.MessagesListener
 import com.home.servicepresentation.ui.main.presentation.fragments.detail.DetailFragment
-import com.home.servicepresentation.ui.main.utils.MessagesListener
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_middle.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class HomeFragment : BaseFragment(), Observer,
     HomeAdapterItemClickListener,
@@ -32,11 +32,13 @@ class HomeFragment : BaseFragment(), Observer,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadingViewShow()
-        setupServiceSegment()
-        setupPromotionSegment()
-        (activity as MainActivity).viewModel.homeObservable.addObserver(this)
-        (activity as MainActivity).viewModel.getHomeData(requireContext())
+        if (savedInstanceState == null) {
+            loadingViewShow()
+            setupServiceSegment()
+            setupPromotionSegment()
+            (activity as MainActivity).viewModel.homeObservable.addObserver(this)
+            (activity as MainActivity).viewModel.getHomeData(requireContext())
+        }
     }
 
     private fun setupServiceSegment() {
@@ -95,8 +97,8 @@ class HomeFragment : BaseFragment(), Observer,
         activity?.supportFragmentManager?.beginTransaction()
             ?.replace(R.id.container,
                 DetailFragment.newInstance()
-            )
-            ?.commitNow()
+            )?.addToBackStack(DetailFragment.javaClass.name)
+            ?.commit()
     }
 
     override fun itemPromotionClicked() {

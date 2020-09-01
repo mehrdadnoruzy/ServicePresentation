@@ -33,6 +33,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="28dp"
             android:text="TextView"
+            android:textAppearance="@style/normal_title"
+            android:lineSpacingExtra="0sp"
+            android:gravity="top"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image" />
 
@@ -44,6 +47,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="1dp"
             android:text="TextView"
+            android:textAppearance="@style/sub_title"
+            android:lineSpacingExtra="0sp"
+            android:gravity="top"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -58,6 +64,9 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:text="TextView"
+            android:textAppearance="@style/description_cell"
+            android:lineSpacingExtra="1sp"
+            android:gravity="top"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +92,9 @@
                 android:id="@+id/new_badge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
+                android:textAppearance="@style/new_and_discount_percentage"
+                android:lineSpacingExtra="0sp"
+                android:gravity="top"
                 android:text="NEW" />
         </FrameLayout>
 
