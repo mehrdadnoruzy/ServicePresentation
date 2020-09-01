@@ -19,8 +19,8 @@ class Repository(private val network: Network): Observer {
         network.getHomeData(context)
 
 
-    fun getCarwashData() =
-        network.getCarwashData()
+    fun getDetailData(context: Context) =
+        network.getDetailData(context)
 
 
     override fun update(o: Observable?, arg: Any?) =

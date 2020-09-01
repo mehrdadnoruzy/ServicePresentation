@@ -7,13 +7,13 @@ import java.util.*
 
 
 @Parcelize
-data class CarwashModel(
+data class DetailModel(
 
 	@field:SerializedName("image")
 	val image: Image? = null,
 
 	@field:SerializedName("data")
-	val data: List<DataItem?>? = null,
+	val data: ArrayList<DataItem?>? = null,
 
 	@field:SerializedName("description")
 	val description: String? = null,

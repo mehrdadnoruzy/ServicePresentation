@@ -7,7 +7,7 @@ import android.os.AsyncTask
 import com.google.gson.GsonBuilder
 import com.home.servicepresentation.ui.main.data.models.base.BaseModel
 import com.home.servicepresentation.ui.main.data.models.base.BaseObservable
-import com.home.servicepresentation.ui.main.data.models.detail.CarwashModel
+import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
 import com.home.servicepresentation.ui.main.data.models.home.HomeModel
 import java.io.*
 import java.net.*
@@ -20,7 +20,7 @@ class Network() {
         BaseObservable()
 
     fun getHomeData(context: Context){
-        var result = GetHomeTask(context).execute(baseUrl+"home").get()
+        var result = CallApiTask(context, "home").execute(baseUrl+"home").get()
         if (result!=null)
             baseObservable.addModel(result)
          else
@@ -32,9 +32,22 @@ class Network() {
             )
     }
 
-    class GetHomeTask(private val context: Context) : AsyncTask<String, Unit, BaseModel<HomeModel>>() {
+    fun getDetailData(context: Context){
+        var result = CallApiTask(context, "detail").execute(baseUrl+"categories/carwash/services").get()
+        if (result!=null)
+            baseObservable.addModel(result)
+        else
+            baseObservable.addModel(
+                BaseModel(
+                    msg = "پاسخی از سرور دریافت نشد",
+                    data = null
+                )
+            )
+    }
 
-        override fun doInBackground(vararg url: String?): BaseModel<HomeModel>? {
+    class CallApiTask(private val context: Context, private val apiType: String) : AsyncTask<String, Unit, BaseModel<*>?>() {
+
+        override fun doInBackground(vararg url: String?): BaseModel<*>? {
             if (check(context)) {
                 val url = URL(url[0])
                 val httpClient = url.openConnection() as HttpURLConnection
@@ -42,7 +55,7 @@ class Network() {
                     try {
                         val stream = BufferedInputStream(httpClient.inputStream)
                         val data: String = readStream(inputStream = stream)
-                        return createModel(data)
+                        return createModel(data, apiType)
                     } catch (e: Exception) {
                         return BaseModel(
                             msg = e.message,
@@ -65,12 +78,20 @@ class Network() {
             )
         }
 
-        fun createModel(data: String): BaseModel<HomeModel> {
-            return BaseModel(
-                code = null,
-                msg = null,
-                data = GsonBuilder().create().fromJson(data, HomeModel::class.java)
-            )
+        fun createModel(data: String, apiType: String): BaseModel<*>? {
+            when (apiType) {
+                "home" -> return BaseModel(
+                    code = null,
+                    msg = null,
+                    data = GsonBuilder().create().fromJson(data, HomeModel::class.java)
+                )
+                "detail" -> return BaseModel(
+                    code = null,
+                    msg = null,
+                    data = GsonBuilder().create().fromJson(data, DetailModel::class.java)
+                )
+                else -> return null
+            }
         }
         fun readStream(inputStream: BufferedInputStream): String {
             val bufferedReader = BufferedReader(InputStreamReader(inputStream))
@@ -110,56 +131,6 @@ class Network() {
                 true
             } catch (e: IOException) {
                 false
-            }
-        }
-    }
-
-    fun getCarwashData(){
-        GetDetailTask().execute("\"$baseUrl/categories/carwash/services\"")
-    }
-
-    class GetDetailTask() : AsyncTask<String, Unit, String>() {
-
-        override fun doInBackground(vararg url: String?): String? {
-            val url = URL(url[0])
-            val httpClient = url.openConnection() as HttpURLConnection
-            if (httpClient.responseCode == HttpURLConnection.HTTP_OK) {
-                try {
-                    val stream = BufferedInputStream(httpClient.inputStream)
-                    val data: String = readStream(inputStream = stream)
-                    return data
-                } catch (e: Exception) {
-/*                    viewModel.showError(
-                        ErrorModel(
-                            msg = e.message
-                        )
-                    )*/
-                } finally {
-                    httpClient.disconnect()
-                }
-            } else {
-/*                viewModel.showError(
-                    ErrorModel(
-                        code = httpClient.responseCode
-                    )
-                )*/
-            }
-            return null
-        }
-
-        fun readStream(inputStream: BufferedInputStream): String {
-            val bufferedReader = BufferedReader(InputStreamReader(inputStream))
-            val stringBuilder = StringBuilder()
-            bufferedReader.forEachLine { stringBuilder.append(it) }
-            return stringBuilder.toString()
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            result?.let {
-                var carwashModel: CarwashModel  =
-                    GsonBuilder().create().fromJson(result, CarwashModel::class.java)
-                //viewModel.setHomeResponse(homeModel)
             }
         }
     }

@@ -2,7 +2,8 @@ package com.home.servicepresentation.ui.main.presentation.activities.main
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import com.home.servicepresentation.ui.main.data.models.detail.CarwashModel
+import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
+import com.home.servicepresentation.ui.main.data.models.detail.DetailObservable
 import com.home.servicepresentation.ui.main.data.models.home.HomeModel
 import com.home.servicepresentation.ui.main.data.models.home.HomeObservable
 import com.home.servicepresentation.ui.main.domain.DetailUsecase
@@ -12,6 +13,7 @@ import java.util.*
 class MainViewModel(private val homeUsecase: HomeUsecase, private val detailUsecase: DetailUsecase) : ViewModel(), Observer {
 
     var homeObservable = HomeObservable()
+    var detailObservable = DetailObservable()
 
     init {
         homeUsecase.homeObservable.addObserver(this)
@@ -21,7 +23,7 @@ class MainViewModel(private val homeUsecase: HomeUsecase, private val detailUsec
         homeUsecase.execute(context)
     }
 
-    fun getCarwashData(context: Context){
+    fun getDetailData(context: Context){
         detailUsecase.execute(context)
     }
 
@@ -32,7 +34,11 @@ class MainViewModel(private val homeUsecase: HomeUsecase, private val detailUsec
                     homeObservable.addModel(arg)
                 }
             }
-            is CarwashModel -> {}
+            is DetailObservable -> {
+                if (arg is DetailModel){
+                    detailObservable.addModel(arg)
+                }
+            }
         }
     }
 }

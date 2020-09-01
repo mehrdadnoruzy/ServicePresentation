@@ -11,13 +11,16 @@ import com.home.servicepresentation.ui.main.data.models.home.HomeObservable
 import com.home.servicepresentation.ui.main.data.models.home.PromotionsItem
 import com.home.servicepresentation.ui.main.presentation.fragments.base.BaseFragment
 import com.home.servicepresentation.ui.main.presentation.activities.main.MainActivity
+import com.home.servicepresentation.ui.main.presentation.fragments.detail.DetailFragment
+import com.home.servicepresentation.ui.main.utils.MessagesListener
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_middle.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-
-class HomeFragment : BaseFragment(), Observer, AdapterListener {
+class HomeFragment : BaseFragment(), Observer,
+    HomeAdapterItemClickListener,
+    MessagesListener {
 
     override fun getLayoutId(): Int = R.layout.home_fragment
     private lateinit var adapterService: ServiceAdapter
@@ -38,13 +41,13 @@ class HomeFragment : BaseFragment(), Observer, AdapterListener {
 
     private fun setupServiceSegment() {
         recyclerViewService.setHasFixedSize(true)
-        adapterService = ServiceAdapter(arrayListOf(), this)
+        adapterService = ServiceAdapter(arrayListOf(), this, this)
         recyclerViewService.adapter = adapterService
         LinearSnapHelper().attachToRecyclerView(recyclerViewService)
     }
     private fun setupPromotionSegment() {
         recyclerViewPromotion.setHasFixedSize(true)
-        adapterPromotion = PromotionAdapter(arrayListOf(), this)
+        adapterPromotion = PromotionAdapter(arrayListOf(), this, this)
         recyclerViewPromotion.adapter = adapterPromotion
         LinearSnapHelper().attachToRecyclerView(recyclerViewPromotion)
     }
@@ -86,5 +89,17 @@ class HomeFragment : BaseFragment(), Observer, AdapterListener {
 
     override fun showMessage(msg: String) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun itemServiceClicked() {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.replace(R.id.container,
+                DetailFragment.newInstance()
+            )
+            ?.commitNow()
+    }
+
+    override fun itemPromotionClicked() {
+
     }
 }

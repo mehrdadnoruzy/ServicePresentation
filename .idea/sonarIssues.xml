@@ -33,6 +33,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/data/models/detail/DetailModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/data/models/detail/DetailObservable.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/data/models/home/HomeModel.kt">
           <value>
             <set />
@@ -43,7 +53,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/data/repository/Repository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/domain/DetailUsecase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/activities/main/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/activities/main/MainViewModel.kt">
           <value>
             <set />
           </value>
@@ -53,7 +78,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/detail/AdapterListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/detail/DetailFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/detail/GridAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/detail/GridAdapterListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/home/AdapterListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/home/AdaptersListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/home/Fragment.kt">
           <value>
             <set />
           </value>
@@ -63,7 +118,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/home/HomeAdaptersListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/home/HomeFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/home/MessagesListener.kt">
           <value>
             <set />
           </value>
@@ -74,6 +139,36 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/home/ServiceAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/listeners/AdaptersListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/listeners/HomeAdapterItemClickListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/listeners/HomeAdaptersClicksListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/listeners/HomeAdaptersListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/DownloadImageTask.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/MyColors.kt">
           <value>
             <set />
           </value>
@@ -268,6 +363,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/shape_percentage.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/detail_fragment.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/detaile_item_grid.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/home_footer.xml">
           <value>
             <set />
@@ -279,6 +389,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/home_header.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/home_item_grid.xml">
           <value>
             <set />
           </value>
@@ -333,12 +448,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/presentation/koinDI/AppModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/presentation/ui/authentication/verify_otp/VerifyOtpFragment.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/presentation/ui/detail/dara/commodity/CommodityDepositoryReportItemVM.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/utils/SafeApiCaller.kt">
           <value>
             <set />
           </value>
