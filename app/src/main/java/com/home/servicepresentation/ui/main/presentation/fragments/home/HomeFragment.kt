@@ -18,6 +18,7 @@ import com.home.servicepresentation.ui.main.presentation.fragments.detail.Detail
 import com.home.servicepresentation.ui.main.presentation.fragments.error.ErrorFragment
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_middle.*
+import kotlinx.coroutines.runBlocking
 import java.util.*
 
 class HomeFragment : BaseFragment(), Observer,
@@ -119,7 +120,7 @@ class HomeFragment : BaseFragment(), Observer,
     }
 
     override fun showMessage(msg: String) {
-        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+        runBlocking { Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show() }
     }
 
     override fun itemServiceClicked() {

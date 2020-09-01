@@ -1,17 +1,14 @@
 package com.home.servicepresentation.ui.main.presentation.activities.main
 
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.home.servicepresentation.R
 import com.home.servicepresentation.ui.main.presentation.fragments.home.HomeFragment
-import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var layout: FrameLayout
     val viewModel: MainViewModel by lazy {
         ViewModelProvider(
             this,
@@ -22,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        layout = container
         if (savedInstanceState == null)
             beginTransaction()
     }
