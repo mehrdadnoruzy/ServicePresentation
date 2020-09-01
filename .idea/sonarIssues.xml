@@ -33,6 +33,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/data/models/base/BaseModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/data/models/detail/DetailModel.kt">
           <value>
             <set />
@@ -63,6 +68,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/domain/HomeUsecase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/domain/UseCase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/activities/main/MainActivity.kt">
           <value>
             <set />
@@ -74,6 +89,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/base/BaseFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/base/MessagesListener.kt">
           <value>
             <set />
           </value>
@@ -94,6 +114,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/detail/GridAdapterListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/error/ErrorFragment.kt">
           <value>
             <set />
           </value>
@@ -379,6 +404,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/detaile_item_grid.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/error_fragment.xml">
           <value>
             <set />
           </value>

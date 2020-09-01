@@ -8,7 +8,8 @@ import com.home.servicepresentation.ui.main.presentation.fragments.base.Messages
 import java.io.InputStream
 import java.net.URL
 
-class DownloadImageTask(image: ImageView, listener: MessagesListener) : AsyncTask<String?, Void?, Bitmap?>() {
+class DownloadImageTask(image: ImageView, listener: MessagesListener) :
+    AsyncTask<String?, Void?, Bitmap?>() {
     var listener: MessagesListener
     var image: ImageView
 
@@ -24,7 +25,7 @@ class DownloadImageTask(image: ImageView, listener: MessagesListener) : AsyncTas
             val `in`: InputStream = URL(urldisplay).openStream()
             mIcon = BitmapFactory.decodeStream(`in`)
         } catch (e: Exception) {
-            listener.showMessage(e.message ?: "بارگزاری تصویر با مشکل مواجه شد")
+            listener.showMessage(e.message ?: "There was a problem loading the image.")
         }
         return mIcon
     }

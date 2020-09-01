@@ -17,7 +17,8 @@ import java.net.InetSocketAddress
 import java.net.Socket
 import java.net.URL
 
-class CallApiTask(private val context: Context, private val apiType: String) : AsyncTask<String, Unit, BaseModel<*>?>() {
+class CallApiTask(private val context: Context, private val apiType: String) :
+    AsyncTask<String, Unit, BaseModel<*>?>() {
 
     override fun doInBackground(vararg url: String?): BaseModel<*>? {
         if (check(context)) {
@@ -47,7 +48,7 @@ class CallApiTask(private val context: Context, private val apiType: String) : A
             }
             return null
         } else return BaseModel(
-            msg = "اتصال به اینترنت را بررسی کنید و مجدد تلاش کنید",
+            msg = "Check your internet connection and try again.",
             data = null
         )
     }
@@ -67,15 +68,18 @@ class CallApiTask(private val context: Context, private val apiType: String) : A
             else -> return null
         }
     }
+
     fun readStream(inputStream: BufferedInputStream): String {
         val bufferedReader = BufferedReader(InputStreamReader(inputStream))
         val stringBuilder = StringBuilder()
         bufferedReader.forEachLine { stringBuilder.append(it) }
         return stringBuilder.toString()
     }
+
     fun check(context: Context): Boolean {
         return (isConnectionOn(context) && isInternetAvailable())
     }
+
     private fun isConnectionOn(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -95,6 +99,7 @@ class CallApiTask(private val context: Context, private val apiType: String) : A
             return false
         }
     }
+
     private fun isInternetAvailable(): Boolean {
         return try {
             val timeoutMs = 1500

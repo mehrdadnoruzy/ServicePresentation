@@ -12,12 +12,23 @@ import com.home.servicepresentation.ui.main.presentation.fragments.base.Messages
 import com.home.servicepresentation.ui.main.utils.DownloadImageTask
 import kotlinx.android.synthetic.main.home_item_service.view.*
 
-
-class ServiceAdapter(private val categories: ArrayList<CategoriesItem?>?, private val itemClickListener: HomeAdapterItemClickListener, private val messenger: MessagesListener) : RecyclerView.Adapter<ServiceAdapter.ViewHolder>() {
+class ServiceAdapter(
+    private val categories: ArrayList<CategoriesItem?>?,
+    private val itemClickListener: HomeAdapterItemClickListener,
+    private val messenger: MessagesListener
+) : RecyclerView.Adapter<ServiceAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(categoriesItem: CategoriesItem?, itemClickListener: HomeAdapterItemClickListener, messenger: MessagesListener){
-            itemView.setOnClickListener { if (categoriesItem?.title?.toLowerCase()?.trim().equals("carwash"))itemClickListener.itemServiceClicked() }
+        fun bind(
+            categoriesItem: CategoriesItem?,
+            itemClickListener: HomeAdapterItemClickListener,
+            messenger: MessagesListener
+        ) {
+            itemView.setOnClickListener {
+                if (categoriesItem?.title?.toLowerCase()?.trim()
+                        .equals("carwash")
+                ) itemClickListener.itemServiceClicked()
+            }
             DownloadImageTask(itemView.image, messenger).execute(categoriesItem?.image?.originalUrl)
             itemView.title.text = categoriesItem?.title
             itemView.subtitle.text = categoriesItem?.subTitle
@@ -33,14 +44,16 @@ class ServiceAdapter(private val categories: ArrayList<CategoriesItem?>?, privat
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.home_item_service, parent,false))
+        ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.home_item_service, parent, false)
+        )
 
     override fun getItemCount(): Int = categories?.size ?: 0
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(categories?.get(position), itemClickListener, messenger)
 
-    fun addCategories(newCategories: ArrayList<CategoriesItem?>?){
+    fun addCategories(newCategories: ArrayList<CategoriesItem?>?) {
         categories?.addAll(newCategories!!)
     }
 }

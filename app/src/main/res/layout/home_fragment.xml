@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#F9FAFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F9FAFF"
     tools:context=".ui.main.presentation.fragments.home.HomeFragment">
 
     <include
@@ -16,28 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <androidx.core.widget.NestedScrollView
+    <include
+        android:id="@+id/include_middle"
+        layout="@layout/home_middle"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:animateLayoutChanges="true"
-        android:fillViewport="true"
-        android:fitsSystemWindows="true"
-        android:scrollbars="none"
-        android:overScrollMode="never"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_header">-->
-
-        <include
-            android:id="@+id/include_middle"
-            layout="@layout/home_middle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_header" />
-
-<!--    </androidx.core.widget.NestedScrollView>-->
+        app:layout_constraintTop_toBottomOf="@+id/include_header" />
 
     <include
         android:id="@+id/include_footer"
@@ -54,9 +40,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

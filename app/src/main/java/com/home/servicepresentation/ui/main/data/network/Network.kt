@@ -1,18 +1,9 @@
 package com.home.servicepresentation.ui.main.data.network
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.AsyncTask
-import com.google.gson.GsonBuilder
 import com.home.servicepresentation.ui.main.data.models.base.BaseModel
 import com.home.servicepresentation.ui.main.data.models.base.BaseObservable
-import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
-import com.home.servicepresentation.ui.main.data.models.home.HomeModel
 import com.home.servicepresentation.ui.main.utils.CallApiTask
-import java.io.*
-import java.net.*
-
 
 class Network() {
 
@@ -36,7 +27,7 @@ class Network() {
         else
             baseObservable.addModel(
                 BaseModel(
-                    msg = "پاسخی از سرور دریافت نشد",
+                    msg = "No response was received from the server.",
                     data = null
                 )
             )

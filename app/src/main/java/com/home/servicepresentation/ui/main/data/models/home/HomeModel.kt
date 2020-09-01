@@ -15,7 +15,6 @@ data class HomeModel(
 
     val title: String? = null,
 
-	//val activeServices: List<Any?>? = null
     val activeServices: List<String?>? = null
 ) : Parcelable
 
