@@ -16,6 +16,7 @@ import com.home.servicepresentation.ui.main.presentation.fragments.base.Messages
 import com.home.servicepresentation.ui.main.presentation.fragments.error.ErrorFragment
 import com.home.servicepresentation.ui.main.utils.DownloadImageTask
 import kotlinx.android.synthetic.main.detail_fragment.*
+import kotlinx.coroutines.runBlocking
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -37,9 +38,9 @@ class DetailFragment : BaseFragment(), Observer,
         if (savedInstanceState == null) {
             //loadingViewShow()
             setupGridSegment()
-            (activity as MainActivity).viewModel.baseObservable.addObserver(this)
-            (activity as MainActivity).viewModel.detailObservable.addObserver(this)
-            (activity as MainActivity).viewModel.getDetailData(requireContext())
+            //(activity as MainActivity).viewModel.baseObservable.addObserver(this)
+            //(activity as MainActivity).viewModel.detailObservable.addObserver(this)
+            //(activity as MainActivity).viewModel.getDetailData(requireContext())
         }
     }
 
@@ -102,7 +103,7 @@ class DetailFragment : BaseFragment(), Observer,
     }
 
     override fun showMessage(msg: String) {
-        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+        runBlocking { Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show() }
     }
 
     override fun itemGridClicked() {

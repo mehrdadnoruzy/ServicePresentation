@@ -2,6 +2,7 @@ package com.home.servicepresentation.ui.main.presentation.activities.main
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.home.servicepresentation.ui.main.data.models.base.BaseModel
 import com.home.servicepresentation.ui.main.data.models.base.BaseObservable
 import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
@@ -10,13 +11,14 @@ import com.home.servicepresentation.ui.main.data.models.home.HomeModel
 import com.home.servicepresentation.ui.main.data.models.home.HomeObservable
 import com.home.servicepresentation.ui.main.domain.DetailUsecase
 import com.home.servicepresentation.ui.main.domain.HomeUsecase
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 class MainViewModel(
     private val homeUsecase: HomeUsecase,
     private val detailUsecase: DetailUsecase
 ) : ViewModel(), Observer {
-
     var homeObservable = HomeObservable()
     var detailObservable = DetailObservable()
     var baseObservable = BaseObservable()

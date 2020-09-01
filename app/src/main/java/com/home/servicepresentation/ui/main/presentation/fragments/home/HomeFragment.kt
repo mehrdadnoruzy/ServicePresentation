@@ -40,8 +40,11 @@ class HomeFragment : BaseFragment(), Observer,
             loadingViewShow()
             setupServiceSegment()
             setupPromotionSegment()
-            (activity as MainActivity).viewModel.baseObservable.addObserver(this)
-            (activity as MainActivity).viewModel.homeObservable.addObserver(this)
+            (activity as MainActivity).viewModel.liveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                updateUI(it?.data!!)
+            })
+            //(activity as MainActivity).viewModel.baseObservable.addObserver(this)
+            //(activity as MainActivity).viewModel.homeObservable.addObserver(this)
             (activity as MainActivity).viewModel.getHomeData(requireContext())
         }
     }

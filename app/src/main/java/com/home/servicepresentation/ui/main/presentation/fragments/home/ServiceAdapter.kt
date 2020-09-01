@@ -29,7 +29,7 @@ class ServiceAdapter(
                         .equals("carwash")
                 ) itemClickListener.itemServiceClicked()
             }
-            DownloadImageTask(itemView.image, messenger).execute(categoriesItem?.image?.originalUrl)
+            DownloadImageTask(itemView.image, messenger).momomo(itemView.image)//execute(categoriesItem?.image?.originalUrl)
             itemView.title.text = categoriesItem?.title
             itemView.subtitle.text = categoriesItem?.subTitle
             itemView.short_description.text = categoriesItem?.shortDescription

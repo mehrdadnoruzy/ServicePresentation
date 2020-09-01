@@ -10,7 +10,7 @@ import com.home.servicepresentation.ui.main.domain.HomeUsecase
 class MyViewModelFactory() : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(
+        return MyViewModel(
             HomeUsecase(Repository(Network())),
             DetailUsecase(Repository(Network()))
         ) as T

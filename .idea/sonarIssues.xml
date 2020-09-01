@@ -88,6 +88,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/activities/main/MyViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/activities/main/MyViewModelFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/base/BaseFragment.kt">
           <value>
             <set />
