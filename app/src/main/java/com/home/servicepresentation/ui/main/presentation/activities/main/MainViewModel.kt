@@ -19,7 +19,7 @@ class MainViewModel(private val homeUsecase: HomeUsecase,
 
     fun getHomeData(context: Context) {
         GlobalScope.launch(Dispatchers.Main) {
-            val result : BaseModel<HomeModel>? = homeUsecase.executeAsync(context).await()
+            val result : BaseModel<HomeModel>? = homeUsecase.executeAsync(context)
             result?.apply {
                 liveDataHome.value = result
             }
@@ -28,7 +28,7 @@ class MainViewModel(private val homeUsecase: HomeUsecase,
 
     fun getDetailData(context: Context) {
         GlobalScope.launch(Dispatchers.Main) {
-            val result : BaseModel<DetailModel>? = detailUsecase.executeAsync(context).await()
+            val result : BaseModel<DetailModel>? = detailUsecase.executeAsync(context)
             result?.apply {
                 liveDataDetail.value = this
             }

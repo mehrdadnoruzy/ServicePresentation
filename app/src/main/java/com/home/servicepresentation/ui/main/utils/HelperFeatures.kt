@@ -12,7 +12,7 @@ import java.net.URL
 
 fun <T : RecyclerView.ViewHolder> T.listenToClick(event: (position: Int, type: Int, title: String) -> Unit): T {
     itemView.setOnClickListener {
-        event.invoke(getAdapterPosition(), getItemViewType(), it.title.text.toString())
+        event.invoke(adapterPosition, itemViewType, it.title.text.toString())
     }
     return this
 }

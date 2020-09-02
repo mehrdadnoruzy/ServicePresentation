@@ -10,11 +10,11 @@ import kotlinx.coroutines.Deferred
 class Repository(private val network: Network) {
 
 
-    fun getHomePageData(context: Context) : Deferred<BaseModel<HomeModel>?> =
+    suspend fun getHomePageData(context: Context) : BaseModel<HomeModel>? =
         network.getHomeData(context)
 
 
-    fun getDetailData(context: Context) : Deferred<BaseModel<DetailModel>?> =
+    suspend fun getDetailData(context: Context) : BaseModel<DetailModel>? =
         network.getDetailData(context)
 
 

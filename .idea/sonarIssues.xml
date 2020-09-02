@@ -118,6 +118,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/detail/DetailAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/detail/DetailFragment.kt">
           <value>
             <set />
@@ -523,6 +528,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/Downloads/Koin-Tutorial-master/app/src/main/java/com/mindorks/framework/mvvm/ui/main/adapter/MainAdapter.kt">
           <value>
             <set />
@@ -553,12 +563,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/data/api/models/ResultWrapper.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/data/dana/splash/SplashRepository.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/data/refactor/UmWebServicesRefactor.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/domain/interactors/ResultClass.kt">
           <value>
             <set />
           </value>

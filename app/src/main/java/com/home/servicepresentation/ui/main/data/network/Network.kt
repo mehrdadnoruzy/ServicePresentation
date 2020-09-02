@@ -7,9 +7,8 @@ import com.google.gson.GsonBuilder
 import com.home.servicepresentation.ui.main.data.models.base.BaseModel
 import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
 import com.home.servicepresentation.ui.main.data.models.home.HomeModel
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.BufferedInputStream
 import java.io.BufferedReader
 import java.io.IOException
@@ -26,20 +25,20 @@ class Network() {
     private val baseUrl = "https://api-dot-rafiji-staging.appspot.com/customer/v2/"
 
 
-    fun getHomeData(context: Context): Deferred<BaseModel<HomeModel>?> {
+    suspend fun getHomeData(context: Context): BaseModel<HomeModel>? {
 
-        return GlobalScope.async {
-            var result = callApi(context) {
+        return withContext(Dispatchers.Default) {
+            val result = callApi(context) {
                 getDataApi("${baseUrl}home")
             }
             createHomeModel(result)
         }
     }
 
-    fun getDetailData(context: Context): Deferred<BaseModel<DetailModel>?> {
+    suspend fun getDetailData(context: Context): BaseModel<DetailModel>? {
 
-        return GlobalScope.async {
-            var result = callApi(context) {
+        return withContext(Dispatchers.Default) {
+            val result = callApi(context) {
                 getDataApi("${baseUrl}categories/carwash/services")
             }
             createDetailModel(result)
@@ -47,72 +46,72 @@ class Network() {
     }
 
 
-    fun callApi(context: Context, apiCall: () -> String): String {
-        if (checkConnectivity(context)) {
-            return apiCall.invoke()
-        } else return ERROR+":"+"Check your internet connection and try again."+":"+"600"
+    private fun callApi(context: Context, apiCall: () -> String): String {
+        return if (checkConnectivity(context)) {
+            apiCall.invoke()
+        } else "$ERROR:Check your internet connection and try again.:600"
     }
 
-    fun getDataApi(url: String): String {
+    private fun getDataApi(url: String): String {
 
         try {
             val url = URL(url)
             val httpClient = url.openConnection() as HttpURLConnection
             httpClient.connectTimeout = 5000
             httpClient.readTimeout = 5000
-            if (httpClient.responseCode == HttpURLConnection.HTTP_OK) {
+            return if (httpClient.responseCode == HttpURLConnection.HTTP_OK) {
                 try {
                     val stream = BufferedInputStream(httpClient.inputStream)
                     val data: String = readStream(inputStream = stream)
-                    return data
+                    data
                 } catch (e: Exception) {
-                    return ERROR+":"+ e.message +":"+"700"
+                    ERROR+":"+ e.message +":"+"700"
                 } finally {
                     httpClient.disconnect()
                 }
-            } else return ERROR+":"+ httpClient.responseMessage + ":" + httpClient.responseCode
+            } else ERROR+":"+ httpClient.responseMessage + ":" + httpClient.responseCode
 
         } catch (e: Exception) {
             return ERROR+":"+ e.message +":"+"800"
         }
     }
 
-    fun readStream(inputStream: BufferedInputStream): String {
+    private fun readStream(inputStream: BufferedInputStream): String {
         val bufferedReader = BufferedReader(InputStreamReader(inputStream))
         val stringBuilder = StringBuilder()
         bufferedReader.forEachLine { stringBuilder.append(it) }
         return stringBuilder.toString()
     }
 
-    fun createHomeModel(data: String): BaseModel<HomeModel>? {
-        if (!data.startsWith(ERROR))
-            return BaseModel(
+    private fun createHomeModel(data: String): BaseModel<HomeModel>? {
+        return if (!data.startsWith(ERROR))
+            BaseModel(
                 code = "200",
                 msg = "ok",
                 data = GsonBuilder().create().fromJson(data, HomeModel::class.java)
             )
-        else return BaseModel(
-            code = data?.split(":")?.get(2),
-            msg = data?.split(":")?.get(1),
+        else BaseModel(
+            code = data.split(":")[2],
+            msg = data.split(":")[1],
             data = null
         )
     }
 
-    fun createDetailModel(data: String): BaseModel<DetailModel>? {
-        if (!data.startsWith(ERROR))
-            return BaseModel(
+    private fun createDetailModel(data: String): BaseModel<DetailModel>? {
+        return if (!data.startsWith(ERROR))
+            BaseModel(
                 code = "200",
                 msg = "ok",
                 data = GsonBuilder().create().fromJson(data, DetailModel::class.java)
             )
-        else return BaseModel(
-            code = data?.split(":")?.get(2),
-            msg = data?.split(":")?.get(1),
+        else BaseModel(
+            code = data.split(":")[2],
+            msg = data.split(":")[1],
             data = null
         )
     }
 
-    fun checkConnectivity(context: Context): Boolean {
+    private fun checkConnectivity(context: Context): Boolean {
         return (isConnectionOn(context) && isInternetAvailable())
     }
 

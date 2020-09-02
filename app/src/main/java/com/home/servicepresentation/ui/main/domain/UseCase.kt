@@ -8,5 +8,5 @@ import java.util.*
 
 interface UseCase<T> {
 
-    fun executeAsync(context: Context) : Deferred<BaseModel<T>?>
+    suspend fun executeAsync(context: Context) : BaseModel<T>?
 }

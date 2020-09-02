@@ -14,13 +14,6 @@ import com.home.servicepresentation.ui.main.presentation.fragments.home.HomeFrag
 
 class MainActivity : AppCompatActivity() {
 
-/*    val viewModel: MyViewModel by lazy {
-        ViewModelProvider(
-            this,
-            MyViewModelFactory()
-        ).get(MyViewModel::class.java)
-    }*/
-
     val viewModel: MainViewModel by lazy {
         ViewModelProvider(
             this,
@@ -35,24 +28,24 @@ class MainActivity : AppCompatActivity() {
             beginTransaction()
     }
 
-    fun beginTransaction() {
+    private fun beginTransaction() {
         supportFragmentManager.beginTransaction()
             .replace(
                 R.id.container,
                 HomeFragment.newInstance()
-            )?.addToBackStack(HomeFragment.javaClass.name)
+            ).addToBackStack(HomeFragment.javaClass.name)
             .commit()
     }
 
     override fun onBackPressed() {
         val fm: FragmentManager = supportFragmentManager
-        if (fm.getBackStackEntryCount() > 0) {
+        if (fm.backStackEntryCount > 0) {
             if ((fm.findFragmentById(R.id.container) is HomeFragment)) showExitDialog()
             else fm.popBackStack()
         } else super.onBackPressed()
     }
 
-    fun showExitDialog() {
+    private fun showExitDialog() {
         AlertDialog.Builder(this)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .setTitle("Exit")

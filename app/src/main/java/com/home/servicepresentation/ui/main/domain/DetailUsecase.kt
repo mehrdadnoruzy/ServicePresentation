@@ -8,6 +8,6 @@ import kotlinx.coroutines.Deferred
 
 class DetailUsecase(private val repository: Repository) : UseCase<DetailModel> {
 
-    override fun executeAsync(context: Context): Deferred<BaseModel<DetailModel>?> =
+    override suspend fun executeAsync(context: Context): BaseModel<DetailModel>? =
         repository.getDetailData(context)
 }

@@ -8,6 +8,6 @@ import kotlinx.coroutines.Deferred
 
 class HomeUsecase(private val repository: Repository) : UseCase<HomeModel> {
 
-    override fun executeAsync(context: Context): Deferred<BaseModel<HomeModel>?> =
+    override suspend fun executeAsync(context: Context): BaseModel<HomeModel>? =
         repository.getHomePageData(context)
 }
