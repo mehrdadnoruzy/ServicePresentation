@@ -16,7 +16,7 @@ import java.net.HttpURLConnection
 import java.net.InetSocketAddress
 import java.net.Socket
 import java.net.URL
-
+@Deprecated("Operation of this class was slow")
 class CallApiTask(private val context: Context, private val apiType: String) :
     AsyncTask<String, Unit, BaseModel<*>?>() {
 
@@ -41,7 +41,7 @@ class CallApiTask(private val context: Context, private val apiType: String) :
                 }
             } else {
                 return BaseModel(
-                    code = httpClient.responseCode,
+                    code = httpClient.responseCode.toString(),
                     msg = httpClient.responseMessage,
                     data = null
                 )

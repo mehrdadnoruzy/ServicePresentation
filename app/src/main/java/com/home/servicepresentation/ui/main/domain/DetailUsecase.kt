@@ -2,24 +2,12 @@ package com.home.servicepresentation.ui.main.domain
 
 import android.content.Context
 import com.home.servicepresentation.ui.main.data.models.base.BaseModel
-import com.home.servicepresentation.ui.main.data.models.base.BaseObservable
+import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
 import com.home.servicepresentation.ui.main.data.repository.Repository
-import java.util.*
+import kotlinx.coroutines.Deferred
 
-class DetailUsecase(private val repository: Repository) : UseCase {
+class DetailUsecase(private val repository: Repository) : UseCase<DetailModel> {
 
-    var baseObservable =
-        BaseObservable()
-
-    init {
-        repository.baseObservable.addObserver(this)
-    }
-
-    override fun execute(context: Context) =
+    override fun executeAsync(context: Context): Deferred<BaseModel<DetailModel>?> =
         repository.getDetailData(context)
-
-
-    override fun update(o: Observable?, arg: Any?) {
-        baseObservable.addModel(arg as BaseModel<*>)
-    }
 }

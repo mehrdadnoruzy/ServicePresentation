@@ -1,31 +1,28 @@
 package com.home.servicepresentation.ui.main.presentation.fragments.detail
 
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.home.servicepresentation.R
 import com.home.servicepresentation.ui.main.data.models.detail.DataItem
-import com.home.servicepresentation.ui.main.presentation.fragments.base.MessagesListener
-import com.home.servicepresentation.ui.main.utils.DownloadImageTask
+import com.home.servicepresentation.ui.main.utils.imageDownloadTask
 import kotlinx.android.synthetic.main.detaile_item_grid.view.*
 
-class GridAdapter(
-    private val data: ArrayList<DataItem?>?,
-    private val itemClickListener: GridAdapterItemClickListener,
-    private val messenger: MessagesListener
-) : RecyclerView.Adapter<GridAdapter.ViewHolder>() {
-
+class DetailAdapter(
+    private val data: ArrayList<DataItem?>?
+) : RecyclerView.Adapter<DetailAdapter.ViewHolder>() {
+    var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
+    var liveDataMSG: MutableLiveData<String> = MutableLiveData()
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(
-            dataItem: DataItem?,
-            itemClickListener: GridAdapterItemClickListener,
-            messenger: MessagesListener
+            dataItem: DataItem?
         ) {
-            itemView.setOnClickListener { itemClickListener.itemGridClicked() }
-            DownloadImageTask(itemView.image, messenger).execute(dataItem?.image?.originalUrl)
+            //DownloadImageTask(itemView.image, messenger).execute(dataItem?.image?.originalUrl)
             itemView.title.text = dataItem?.title
             itemView.subtitle.text = dataItem?.subTitle
             itemView.short_description.text = dataItem?.shortDescription
@@ -47,8 +44,8 @@ class GridAdapter(
             }
             if (dataItem?.isActive != true) {
                 (itemView as CardView).setCardBackgroundColor(Color.parseColor("#C1C1C1"))
-                (itemView as CardView).isEnabled = false
-                (itemView as CardView).isClickable = false
+                itemView.isEnabled = false
+                itemView.isClickable = false
             }
         }
     }
@@ -60,8 +57,14 @@ class GridAdapter(
 
     override fun getItemCount(): Int = data?.size ?: 0
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(data?.get(position), itemClickListener, messenger)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(data?.get(position))
+        imageDownloadTask(
+            holder.itemView.image,
+            data?.get(position)?.image?.originalUrl,
+            liveDataMSG, liveDataIMG
+        )
+    }
 
     fun addData(newData: java.util.ArrayList<DataItem?>?) {
         data?.addAll(newData!!)

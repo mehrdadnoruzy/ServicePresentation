@@ -98,6 +98,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/activities/main/ViewModelProviderFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/fragments/base/BaseFragment.kt">
           <value>
             <set />
@@ -198,6 +203,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/AdapterMethodExtension.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/CallApiTask.kt">
           <value>
             <set />
@@ -208,7 +218,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/ERRORS.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/ErrorCodes.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/Errors.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/HelperFeatures.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/HolderDownloadImageFeature.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/MyColors.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/utils/ViewHolderFeatures.kt">
           <value>
             <set />
           </value>
@@ -468,6 +508,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/problem.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <value>
             <set />
@@ -483,7 +528,52 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/build/generated/source/buildConfig/localFlavor/debug/com/csdiran/samat/BuildConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/data/api/DanaWebService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/data/api/UmWebService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/data/dana/splash/SplashRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/data/refactor/UmWebServicesRefactor.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/domain/interactors/base/UseCase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/domain/interactors/base/UseCaseCoroutines.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/domain/interactors/dara/DaraPortfoUseCase.kt">
           <value>
             <set />
           </value>
@@ -498,7 +588,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/presentation/ui/RIM.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/presentation/ui/authentication/register_user/RegisterUserFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/presentation/ui/authentication/verify_otp/VerifyOtpFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/presentation/ui/base/refactor/BaseFragmentRefactor.kt">
           <value>
             <set />
           </value>
@@ -508,7 +613,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/presentation/ui/splash/SplashActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/presentation/ui/splash/SplashViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/utils/SafeApiCaller.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/java/com/csdiran/samat/utils/captcha/Captcha.kt">
           <value>
             <set />
           </value>
@@ -518,7 +638,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/res/layout/activity_daily_trades_detail_refactor.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/res/layout/activity_daily_trades_detail_table.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/res/layout/activity_electronic_complex_table.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/app/src/main/res/layout/fragment_otp.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/samat/sundatepicker/build/intermediates/incremental/packageDebugResources/compile-file-map.properties">
           <value>
             <set />
           </value>

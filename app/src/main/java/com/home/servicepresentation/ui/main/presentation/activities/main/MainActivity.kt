@@ -6,21 +6,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.home.servicepresentation.R
+import com.home.servicepresentation.ui.main.data.network.Network
+import com.home.servicepresentation.ui.main.data.repository.Repository
+import com.home.servicepresentation.ui.main.domain.DetailUsecase
+import com.home.servicepresentation.ui.main.domain.HomeUsecase
 import com.home.servicepresentation.ui.main.presentation.fragments.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
-/*    val viewModel: MainViewModel by lazy {
-        ViewModelProvider(
-            this,
-            MyViewModelFactory()
-        ).get(MainViewModel::class.java)
-    }*/
 
-    val viewModel: MyViewModel by lazy {
+/*    val viewModel: MyViewModel by lazy {
         ViewModelProvider(
             this,
             MyViewModelFactory()
         ).get(MyViewModel::class.java)
+    }*/
+
+    val viewModel: MainViewModel by lazy {
+        ViewModelProvider(
+            this,
+            MainViewModelProviderFactory(MainViewModel(HomeUsecase(Repository(Network())), DetailUsecase(Repository(Network()))))
+        ).get(MainViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

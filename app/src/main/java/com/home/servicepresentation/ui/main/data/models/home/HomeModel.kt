@@ -1,6 +1,7 @@
 package com.home.servicepresentation.ui.main.data.models.home
 
 import android.os.Parcelable
+import com.home.servicepresentation.ui.main.data.models.base.BaseModel
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 

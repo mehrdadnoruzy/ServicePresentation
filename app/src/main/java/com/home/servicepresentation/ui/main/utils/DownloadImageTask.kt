@@ -2,17 +2,18 @@ package com.home.servicepresentation.ui.main.utils
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.AsyncTask
 import android.widget.ImageView
-import com.home.servicepresentation.ui.main.presentation.fragments.base.MessagesListener
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import java.io.IOException
 import java.io.InputStream
 import java.net.URL
 
+@Deprecated("Operation of this class was slow")
 class DownloadImageTask(image: ImageView, listener: MessagesListener) :
     AsyncTask<String?, Void?, Bitmap?>() {
+    var liveDataMSG: MutableLiveData<String> = MutableLiveData()
     var listener: MessagesListener
     var image: ImageView
 
@@ -24,7 +25,7 @@ class DownloadImageTask(image: ImageView, listener: MessagesListener) :
     fun momomo(image: ImageView){
 
         // url of image to download
-        val urlImage:URL = URL("https://images.pexels.com/photos/730344/" +
+        val urlImage:URL = URL("https://images345.pexels.com/photos/730344/" +
                 "pexels-photo-730344.jpeg?" +
                 "auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
 
@@ -46,6 +47,7 @@ class DownloadImageTask(image: ImageView, listener: MessagesListener) :
         return try {
             BitmapFactory.decodeStream(openStream())
         }catch (e: IOException){
+            liveDataMSG.value = e.message
             null
         }
     }
@@ -57,7 +59,7 @@ class DownloadImageTask(image: ImageView, listener: MessagesListener) :
             val `in`: InputStream = URL(urldisplay).openStream()
             mIcon = BitmapFactory.decodeStream(`in`)
         } catch (e: Exception) {
-            listener.showMessage(e.message ?: "There was a problem loading the image.")
+            //listener.showMessage(e.message ?: "There was a problem loading the image.")
         }
         return mIcon
     }
@@ -65,5 +67,8 @@ class DownloadImageTask(image: ImageView, listener: MessagesListener) :
     override fun onPostExecute(result: Bitmap?) {
         image.setImageBitmap(result)
     }
+    interface MessagesListener {
 
+        fun showMessage(msg: String)
+    }
 }

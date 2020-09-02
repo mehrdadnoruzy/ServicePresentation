@@ -2,29 +2,20 @@ package com.home.servicepresentation.ui.main.data.repository
 
 import android.content.Context
 import com.home.servicepresentation.ui.main.data.models.base.BaseModel
-import com.home.servicepresentation.ui.main.data.models.base.BaseObservable
+import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
+import com.home.servicepresentation.ui.main.data.models.home.HomeModel
 import com.home.servicepresentation.ui.main.data.network.Network
-import java.util.*
+import kotlinx.coroutines.Deferred
 
-class Repository(private val network: Network): Observer {
+class Repository(private val network: Network) {
 
-    var baseObservable =
-        BaseObservable()
 
-    init {
-        network.baseObservable.addObserver(this)
-    }
-
-    fun getHomePageData(context: Context) =
+    fun getHomePageData(context: Context) : Deferred<BaseModel<HomeModel>?> =
         network.getHomeData(context)
 
 
-    fun getDetailData(context: Context) =
+    fun getDetailData(context: Context) : Deferred<BaseModel<DetailModel>?> =
         network.getDetailData(context)
-
-
-    override fun update(o: Observable?, arg: Any?) =
-        baseObservable.addModel(arg as BaseModel<*>)
 
 
 }
