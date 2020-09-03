@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="/fragment.kt">
           <value>
             <set />
@@ -524,6 +529,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/home/servicepresentation/ui/main/data/network/NetworkTest.kt">
           <value>
             <set />
           </value>

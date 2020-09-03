@@ -46,7 +46,7 @@ class Network() {
             else "$ERROR:Check your internet connection and try again.:600"
     }
 
-    private fun getApiDataOf(url: String): String {
+     fun getApiDataOf(url: String): String {
         try {
             val httpClient = URL(url).openConnection() as HttpURLConnection
             httpClient.connectTimeout = 5000

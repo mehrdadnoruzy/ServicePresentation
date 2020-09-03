@@ -27,7 +27,7 @@ class DetailAdapter(
             itemView.title.text = dataItem?.title
             itemView.subtitle.text = dataItem?.subTitle
             itemView.short_description.text = dataItem?.shortDescription
-            itemView.price.text = dataItem?.basePrice.toString() + Resources.getSystem().getString(R.string.currency)
+            itemView.price.text = dataItem?.basePrice.toString() + " QAR"
             if (dataItem?.hasDiscount == true) {
                 itemView.has_discount.visibility = View.VISIBLE
                 itemView.discount_percentage.text = dataItem.discountPercentage.toString()
