@@ -48,9 +48,7 @@ class Network() {
 
      fun getApiDataOf(url: String): String {
         try {
-            val httpClient = URL(url).openConnection() as HttpURLConnection
-            httpClient.connectTimeout = 5000
-            httpClient.readTimeout = 5000
+            val httpClient = openConnection(url)
             return if (httpClient.responseCode == HttpURLConnection.HTTP_OK) {
                 try {
                     readStream(inputStream = BufferedInputStream(httpClient.inputStream))
@@ -65,13 +63,20 @@ class Network() {
         }
     }
 
-    private fun readStream(inputStream: BufferedInputStream): String {
+    fun openConnection(url: String) : HttpURLConnection{
+        val httpClient = URL(url).openConnection() as HttpURLConnection
+        httpClient.connectTimeout = 5000
+        httpClient.readTimeout = 5000
+        return httpClient
+    }
+
+    fun readStream(inputStream: BufferedInputStream): String {
         val stringBuilder = StringBuilder()
         BufferedReader(InputStreamReader(inputStream)).forEachLine { stringBuilder.append(it) }
         return stringBuilder.toString()
     }
 
-    private fun createHomeModel(data: String): BaseModel<HomeModel>? {
+    fun createHomeModel(data: String): BaseModel<HomeModel>? {
         return if (!data.startsWith(ERROR))
             BaseModel(
                 code = "200",
@@ -85,7 +90,7 @@ class Network() {
         )
     }
 
-    private fun createDetailModel(data: String): BaseModel<DetailModel>? {
+    fun createDetailModel(data: String): BaseModel<DetailModel>? {
         return if (!data.startsWith(ERROR))
             BaseModel(
                 code = "200",
