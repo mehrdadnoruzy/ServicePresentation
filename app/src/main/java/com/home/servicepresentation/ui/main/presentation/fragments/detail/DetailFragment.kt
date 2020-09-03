@@ -55,7 +55,7 @@ class DetailFragment : BaseFragment() {
     private fun callApi() {
         if ((activity as MainActivity).viewModel.liveDataDetail.value?.data == null) {
             loadingViewShow()
-            (activity as MainActivity).viewModel.getDetailData(requireContext())
+            (activity as MainActivity).viewModel.getDetailData()
         } else {
             analyzeProblem((activity as MainActivity).viewModel.liveDataDetail.value)
         }
@@ -80,9 +80,9 @@ class DetailFragment : BaseFragment() {
     private fun updateUI(detailModel: DetailModel) {
         if (this.isAdded) {
             loadImage(detailModel)
-            title.text = detailModel.title
-            slogan.text = detailModel.slogan
-            description.text = detailModel.description
+            title.text = detailModel.title ?: "-"
+            slogan.text = detailModel.slogan ?: "-"
+            description.text = detailModel.description ?: "-"
             renderListOfGrid(detailModel.data)
             main.visibility = View.VISIBLE
         }

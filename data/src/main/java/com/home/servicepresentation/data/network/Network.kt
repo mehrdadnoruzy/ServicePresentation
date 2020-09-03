@@ -1,9 +1,8 @@
 package com.home.servicepresentation.data.network
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import com.google.gson.GsonBuilder
+import com.home.servicepresentation.data.SingletonHolder
 import com.home.servicepresentation.data.models.base.BaseModel
 import com.home.servicepresentation.data.models.detail.DetailModel
 import com.home.servicepresentation.data.models.home.HomeModel
@@ -12,37 +11,36 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.io.BufferedInputStream
 import java.io.BufferedReader
-import java.io.IOException
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
-import java.net.InetSocketAddress
-import java.net.Socket
 import java.net.URL
 
-class Network() {
+class Network private constructor(private val checkNetwork: CheckNetwork) {
+
+    companion object : SingletonHolder<Network, CheckNetwork>(::Network)
 
     private val ERROR = "ERROR"
 
     private val baseUrl = "https://api-dot-rafiji-staging.appspot.com/customer/v2/"
 
-    suspend fun getHomeData(context: Context): BaseModel<HomeModel>? {
+    suspend fun getHomeData(): BaseModel<HomeModel>? {
         return withContext(Dispatchers.Default) {
-            createHomeModel(callApi(context) {
+            createHomeModel(callApi() {
                 getApiDataOf("${baseUrl}home")
             })
         }
     }
 
-    suspend fun getDetailData(context: Context): BaseModel<DetailModel>? {
+    suspend fun getDetailData(): BaseModel<DetailModel>? {
         return withContext(Dispatchers.Default) {
-            createDetailModel(callApi(context) {
+            createDetailModel(callApi() {
                 getApiDataOf("${baseUrl}categories/carwash/services")
             })
         }
     }
 
-    private fun callApi(context: Context, apiCall: () -> String): String {
-        return if (checkConnectivity(context)) apiCall.invoke()
+    private fun callApi(apiCall: () -> String): String {
+        return if (checkNetwork.checkConnectivity()) apiCall.invoke()
             else "$ERROR:600:Check your internet connection and try again"
     }
 
@@ -114,42 +112,5 @@ class Network() {
             msg = message,
             data = null
         )
-    }
-
-    private fun checkConnectivity(context: Context): Boolean {
-        return (isConnectionOn(context) && isInternetAvailable())
-    }
-
-    private fun isConnectionOn(context: Context): Boolean {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            val network = connectivityManager.activeNetwork
-            val connection = connectivityManager.getNetworkCapabilities(network)
-            return connection != null && (
-                    connection.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-                            connection.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR))
-
-        } else {
-            val activeNetwork = connectivityManager.activeNetworkInfo
-            if (activeNetwork != null) {
-                return (activeNetwork.type == ConnectivityManager.TYPE_WIFI ||
-                        activeNetwork.type == ConnectivityManager.TYPE_MOBILE)
-            }
-            return false
-        }
-    }
-
-    private fun isInternetAvailable(): Boolean {
-        return try {
-            val timeoutMs = 1500
-            val sock = Socket()
-            val sockaddr = InetSocketAddress("8.8.8.8", 53)
-            sock.connect(sockaddr, timeoutMs)
-            sock.close()
-            true
-        } catch (e: IOException) {
-            false
-        }
     }
 }

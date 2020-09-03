@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.home.servicepresentation.R
+import com.home.servicepresentation.data.network.CheckNetwork
 import com.home.servicepresentation.data.network.Network
 import com.home.servicepresentation.data.repository.Repository
 import com.home.servicepresentation.domain.DetailUsecase
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     val viewModel: MainViewModel by lazy {
         ViewModelProvider(
             this,
-            MainViewModelProviderFactory(MainViewModel(HomeUsecase(Repository(Network())), DetailUsecase(Repository(Network()))))
+            MainViewModelProviderFactory(MainViewModel(HomeUsecase(Repository.getInstance(Network.getInstance(CheckNetwork.getInstance(this)))), DetailUsecase(Repository.getInstance(Network.getInstance(CheckNetwork.getInstance(this))))))
         ).get(MainViewModel::class.java)
     }
 

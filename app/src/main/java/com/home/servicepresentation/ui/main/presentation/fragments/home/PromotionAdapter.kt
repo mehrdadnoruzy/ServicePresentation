@@ -30,13 +30,34 @@ class PromotionAdapter(
     override fun getItemCount(): Int = promotions?.size ?: 0
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        loadImage(holder, position)
+    }
+
+    private fun loadImage(holder: ViewHolder, position: Int){
         imageDownloadTask(
             holder.itemView.image,
             promotions?.get(position)?.image?.originalUrl,
             liveDataMSG,
             liveDataIMG
         )
-
+        imageDownloadTask(
+            holder.itemView.image,
+            promotions?.get(position)?.image?.originalUrl2x,
+            liveDataMSG,
+            liveDataIMG
+        )
+        imageDownloadTask(
+            holder.itemView.image,
+            promotions?.get(position)?.image?.originalUrl3x,
+            liveDataMSG,
+            liveDataIMG
+        )
+        imageDownloadTask(
+            holder.itemView.image,
+            promotions?.get(position)?.image?.originalUrl4x,
+            liveDataMSG,
+            liveDataIMG
+        )
     }
 
     fun addPromotions(newPromotions: ArrayList<PromotionsItem?>?) {

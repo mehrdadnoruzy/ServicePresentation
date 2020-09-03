@@ -553,6 +553,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/SingletonHolder.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/models/detail/DetailModel.kt">
           <value>
             <set />
@@ -563,12 +568,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/network/CheckNetwork.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/network/Network.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/repository/Repository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/repository/SingletonHolder.kt">
           <value>
             <set />
           </value>

@@ -13,6 +13,8 @@ import com.home.servicepresentation.data.models.home.CategoriesItem
 import com.home.servicepresentation.ui.main.utils.imageDownloadTask
 import com.home.servicepresentation.ui.main.utils.listenToClick
 import kotlinx.android.synthetic.main.home_item_service.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ServiceAdapter(
     private val categories: ArrayList<CategoriesItem?>?
@@ -27,9 +29,9 @@ class ServiceAdapter(
         fun bind(
             categoriesItem: CategoriesItem?
         ) {
-            itemView.title.text = categoriesItem?.title
-            itemView.subtitle.text = categoriesItem?.subTitle
-            itemView.short_description.text = categoriesItem?.shortDescription
+            itemView.title.text = categoriesItem?.title ?: "-"
+            itemView.subtitle.text = categoriesItem?.subTitle ?: "-"
+            itemView.short_description.text = categoriesItem?.shortDescription ?: "-"
             if (categoriesItem?.hasNewBadge == true)
                 itemView.has_new_badge.visibility = View.VISIBLE
             if (categoriesItem?.isActive != true) {
@@ -46,7 +48,7 @@ class ServiceAdapter(
         )
             .listenToClick { pos, type, title ->
                 //val item = categories?.get(pos)
-                if (title.toLowerCase().trim().equals("carwash"))
+                if (title.toLowerCase(Locale.ROOT).trim().equals("carwash"))
                     liveDataClicked.value = true
             }
 
@@ -55,9 +57,31 @@ class ServiceAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(categories?.get(position))
+        loadImage(holder, position)
+    }
+
+    private fun loadImage(holder: ViewHolder, position: Int){
         imageDownloadTask(
             holder.itemView.image,
             categories?.get(position)?.image?.originalUrl,
+            liveDataMSG,
+            liveDataIMG
+        )
+        imageDownloadTask(
+            holder.itemView.image,
+            categories?.get(position)?.image?.originalUrl2x,
+            liveDataMSG,
+            liveDataIMG
+        )
+        imageDownloadTask(
+            holder.itemView.image,
+            categories?.get(position)?.image?.originalUrl3x,
+            liveDataMSG,
+            liveDataIMG
+        )
+        imageDownloadTask(
+            holder.itemView.image,
+            categories?.get(position)?.image?.originalUrl4x,
             liveDataMSG,
             liveDataIMG
         )

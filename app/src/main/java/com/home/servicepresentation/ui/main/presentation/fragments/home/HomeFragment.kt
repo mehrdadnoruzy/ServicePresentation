@@ -50,7 +50,7 @@ class HomeFragment : BaseFragment() {
     private fun callApi() {
         if ((activity as MainActivity).viewModel.liveDataHome.value?.data == null) {
             loadingViewShow()
-            (activity as MainActivity).viewModel.getHomeData(requireContext())
+            (activity as MainActivity).viewModel.getHomeData()
         } else {
             analyzeProblem((activity as MainActivity).viewModel.liveDataHome.value)
         }
@@ -81,8 +81,8 @@ class HomeFragment : BaseFragment() {
 
     private fun updateUI(homeModel: HomeModel) {
         if (isAdded) {
-            tv_title.text = homeModel.title
-            tv_subtitle.text = homeModel.subTitle
+            tv_title.text = homeModel.title ?: "-"
+            tv_subtitle.text = homeModel.subTitle ?: "-"
             renderListOfServices(homeModel.categories)
             renderListOfPromotions(homeModel.promotions)
             include_middle.visibility = View.VISIBLE

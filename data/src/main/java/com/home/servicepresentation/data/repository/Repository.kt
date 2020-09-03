@@ -1,20 +1,21 @@
 package com.home.servicepresentation.data.repository
 
-import android.content.Context
+import com.home.servicepresentation.data.SingletonHolder
 import com.home.servicepresentation.data.models.base.BaseModel
 import com.home.servicepresentation.data.models.detail.DetailModel
 import com.home.servicepresentation.data.models.home.HomeModel
 import com.home.servicepresentation.data.network.Network
 
-class Repository(private val network: Network) {
+class Repository private constructor(private val network: Network) {
+
+    companion object : SingletonHolder<Repository, Network>(::Repository)
+
+    suspend fun getHomePageData(): BaseModel<HomeModel>? =
+        network.getHomeData()
 
 
-    suspend fun getHomePageData(context: Context) : BaseModel<HomeModel>? =
-        network.getHomeData(context)
-
-
-    suspend fun getDetailData(context: Context) : BaseModel<DetailModel>? =
-        network.getDetailData(context)
+    suspend fun getDetailData(): BaseModel<DetailModel>? =
+        network.getDetailData()
 
 
 }

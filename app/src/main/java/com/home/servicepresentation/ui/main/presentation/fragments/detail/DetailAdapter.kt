@@ -24,15 +24,15 @@ class DetailAdapter(
         fun bind(
             dataItem: DataItem?
         ) {
-            itemView.title.text = dataItem?.title
-            itemView.subtitle.text = dataItem?.subTitle
-            itemView.short_description.text = dataItem?.shortDescription
-            itemView.price.text = dataItem?.basePrice.toString() + " QAR"
+            itemView.title.text = dataItem?.title ?: "-"
+            itemView.subtitle.text = dataItem?.subTitle ?: "-"
+            itemView.short_description.text = dataItem?.shortDescription ?: "-"
+            itemView.price.text = dataItem?.basePrice?.toString() + " QAR"
             if (dataItem?.hasDiscount == true) {
                 itemView.has_discount.visibility = View.VISIBLE
-                itemView.discount_percentage.text = dataItem.discountPercentage.toString()
+                itemView.discount_percentage.text = dataItem.discountPercentage?.toString() ?: "-"
                 itemView.discount_price.visibility = View.VISIBLE
-                itemView.discount_price.text = dataItem?.listBasePrice.toString() + " QAR"
+                itemView.discount_price.text = dataItem.listBasePrice?.toString() + " QAR"
             }
             if (dataItem?.isSpecial == true) {
                 (itemView as CardView).setCardBackgroundColor(
@@ -60,12 +60,30 @@ class DetailAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data?.get(position))
+        loadImage(holder, position)
+    }
+
+    private fun loadImage(holder: ViewHolder, position: Int){
         imageDownloadTask(
             holder.itemView.image,
             data?.get(position)?.image?.originalUrl,
             liveDataMSG, liveDataIMG
         )
-
+        imageDownloadTask(
+            holder.itemView.image,
+            data?.get(position)?.image?.originalUrl2x,
+            liveDataMSG, liveDataIMG
+        )
+        imageDownloadTask(
+            holder.itemView.image,
+            data?.get(position)?.image?.originalUrl3x,
+            liveDataMSG, liveDataIMG
+        )
+        imageDownloadTask(
+            holder.itemView.image,
+            data?.get(position)?.image?.originalUrl4x,
+            liveDataMSG, liveDataIMG
+        )
     }
 
     fun addData(newData: java.util.ArrayList<DataItem?>?) {

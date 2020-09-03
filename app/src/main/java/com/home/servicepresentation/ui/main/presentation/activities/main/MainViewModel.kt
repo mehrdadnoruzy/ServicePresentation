@@ -1,6 +1,5 @@
 package com.home.servicepresentation.ui.main.presentation.activities.main
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.home.servicepresentation.data.models.base.BaseModel
@@ -17,18 +16,18 @@ class MainViewModel(private val homeUsecase: HomeUsecase,
     var liveDataHome: MutableLiveData<BaseModel<HomeModel>?> = MutableLiveData()
     var liveDataDetail: MutableLiveData<BaseModel<DetailModel>?> = MutableLiveData()
 
-    fun getHomeData(context: Context) {
+    fun getHomeData() {
         GlobalScope.launch(Dispatchers.Main) {
-            val result : BaseModel<HomeModel>? = homeUsecase.executeAsync(context)
+            val result : BaseModel<HomeModel>? = homeUsecase.executeAsync()
             result?.apply {
                 liveDataHome.value = result
             }
         }
     }
 
-    fun getDetailData(context: Context) {
+    fun getDetailData() {
         GlobalScope.launch(Dispatchers.Main) {
-            val result : BaseModel<DetailModel>? = detailUsecase.executeAsync(context)
+            val result : BaseModel<DetailModel>? = detailUsecase.executeAsync()
             result?.apply {
                 liveDataDetail.value = this
             }
