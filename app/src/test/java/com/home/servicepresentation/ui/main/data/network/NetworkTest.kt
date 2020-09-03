@@ -24,7 +24,7 @@ class NetworkTest {
     }
 
     @Test
-    fun getApiDataOf_Not_Null_With_Fals_Url() {
+    fun getApiDataOf_Not_Null_With_False_Url() {
 
         val result = network.getApiDataOf(falseUrl)
         assertNotNull(result)
@@ -32,10 +32,12 @@ class NetworkTest {
     }
 
     @Test
-    fun getApiDataOf_Not_Null_With_Null_Url() {
+    fun getApiDataOf_Not_Null_With_Empty_Url() {
 
         val result = network.getApiDataOf("")
         assertNotNull(result)
 
     }
+
+
 }

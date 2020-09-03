@@ -43,7 +43,7 @@ class Network() {
 
     private fun callApi(context: Context, apiCall: () -> String): String {
         return if (checkConnectivity(context)) apiCall.invoke()
-            else "$ERROR:Check your internet connection and try again.:600"
+            else "$ERROR:600:Check your internet connection and try again"
     }
 
      fun getApiDataOf(url: String): String {
@@ -55,13 +55,13 @@ class Network() {
                 try {
                     readStream(inputStream = BufferedInputStream(httpClient.inputStream))
                 } catch (e: Exception) {
-                    ERROR + ":" + e.message + ":" + "700"
+                    "$ERROR:700:${e.message}"
                 } finally {
                     httpClient.disconnect()
                 }
-            } else ERROR + ":" + httpClient.responseMessage + ":" + httpClient.responseCode
+            } else "$ERROR:${httpClient.responseCode}:${httpClient.responseMessage}"
         } catch (e: Exception) {
-            return ERROR + ":" + e.message + ":" + "800"
+            return "$ERROR:800:${e.message}"
         }
     }
 
@@ -79,8 +79,8 @@ class Network() {
                 data = GsonBuilder().create().fromJson(data, HomeModel::class.java)
             )
         else BaseModel(
-            code = data.split(":")[2],
-            msg = data.split(":")[1],
+            code = data.split(":")[1],
+            msg = data.split(":")[2],
             data = null
         )
     }
@@ -93,8 +93,8 @@ class Network() {
                 data = GsonBuilder().create().fromJson(data, DetailModel::class.java)
             )
         else BaseModel(
-            code = data.split(":")[2],
-            msg = data.split(":")[1],
+            code = data.split(":")[1],
+            msg = data.split(":")[2],
             data = null
         )
     }
