@@ -543,6 +543,56 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/data/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/models/detail/DetailModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/models/home/HomeModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/network/Network.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/repository/Repository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/domain/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/domain/src/main/java/com/home/servicepresentation/domain/DetailUsecase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/domain/src/main/java/com/home/servicepresentation/domain/HomeUsecase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/domain/src/main/java/com/home/servicepresentation/domain/UseCase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/Downloads/Koin-Tutorial-master/app/src/main/java/com/mindorks/framework/mvvm/ui/main/adapter/MainAdapter.kt">
           <value>
             <set />

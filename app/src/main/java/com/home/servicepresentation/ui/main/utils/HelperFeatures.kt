@@ -19,15 +19,17 @@ fun <T : RecyclerView.ViewHolder> T.listenToClick(event: (position: Int, type: I
 
 fun imageDownloadTask(image: ImageView, url: String?, liveDataMSG: MutableLiveData<String>, liveDataIMG: MutableLiveData<Bitmap>){
     if (liveDataIMG.value==null) {
-        val urlImage: URL = URL(url)
-        val result: Deferred<Bitmap?> = GlobalScope.async {
-            urlImage.toBitmap(liveDataMSG)
-        }
-        GlobalScope.launch(Dispatchers.Main) {
-            val bitmap: Bitmap? = result.await()
-            liveDataIMG.value = bitmap
-            liveDataIMG.value?.apply {
-                image.setImageBitmap(this)
+        url?.let {
+            val urlImage: URL = URL(url)
+            val result: Deferred<Bitmap?> = GlobalScope.async {
+                urlImage.toBitmap(liveDataMSG)
+            }
+            GlobalScope.launch(Dispatchers.Main) {
+                val bitmap: Bitmap? = result.await()
+                liveDataIMG.value = bitmap
+                liveDataIMG.value?.apply {
+                    image.setImageBitmap(this)
+                }
             }
         }
     }

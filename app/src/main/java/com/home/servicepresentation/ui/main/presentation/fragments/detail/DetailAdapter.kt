@@ -1,6 +1,5 @@
 package com.home.servicepresentation.ui.main.presentation.fragments.detail
 
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -10,7 +9,7 @@ import androidx.cardview.widget.CardView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.home.servicepresentation.R
-import com.home.servicepresentation.ui.main.data.models.detail.DataItem
+import com.home.servicepresentation.data.models.detail.DataItem
 import com.home.servicepresentation.ui.main.utils.imageDownloadTask
 import kotlinx.android.synthetic.main.detaile_item_grid.view.*
 
@@ -20,6 +19,7 @@ class DetailAdapter(
 
     var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
     var liveDataMSG: MutableLiveData<String> = MutableLiveData()
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(
             dataItem: DataItem?
@@ -65,6 +65,7 @@ class DetailAdapter(
             data?.get(position)?.image?.originalUrl,
             liveDataMSG, liveDataIMG
         )
+
     }
 
     fun addData(newData: java.util.ArrayList<DataItem?>?) {

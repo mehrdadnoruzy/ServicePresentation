@@ -3,11 +3,11 @@ package com.home.servicepresentation.ui.main.presentation.activities.main
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.home.servicepresentation.ui.main.data.models.base.BaseModel
-import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
-import com.home.servicepresentation.ui.main.data.models.home.HomeModel
-import com.home.servicepresentation.ui.main.domain.DetailUsecase
-import com.home.servicepresentation.ui.main.domain.HomeUsecase
+import com.home.servicepresentation.data.models.base.BaseModel
+import com.home.servicepresentation.data.models.detail.DetailModel
+import com.home.servicepresentation.data.models.home.HomeModel
+import com.home.servicepresentation.domain.DetailUsecase
+import com.home.servicepresentation.domain.HomeUsecase
 import kotlinx.coroutines.*
 
 class MainViewModel(private val homeUsecase: HomeUsecase,

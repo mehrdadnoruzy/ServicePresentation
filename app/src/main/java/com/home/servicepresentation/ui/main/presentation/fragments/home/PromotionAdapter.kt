@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.home.servicepresentation.R
-import com.home.servicepresentation.ui.main.data.models.home.PromotionsItem
+import com.home.servicepresentation.data.models.home.PromotionsItem
 import com.home.servicepresentation.ui.main.utils.imageDownloadTask
 import kotlinx.android.synthetic.main.home_item_service.view.*
 
@@ -36,6 +36,7 @@ class PromotionAdapter(
             liveDataMSG,
             liveDataIMG
         )
+
     }
 
     fun addPromotions(newPromotions: ArrayList<PromotionsItem?>?) {

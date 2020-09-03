@@ -1,15 +1,14 @@
 package com.home.servicepresentation.ui.main.presentation.fragments.detail
 
 import android.graphics.Bitmap
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.home.servicepresentation.R
-import com.home.servicepresentation.ui.main.data.models.base.BaseModel
-import com.home.servicepresentation.ui.main.data.models.detail.DataItem
-import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
+import com.home.servicepresentation.data.models.base.BaseModel
+import com.home.servicepresentation.data.models.detail.DataItem
+import com.home.servicepresentation.data.models.detail.DetailModel
 import com.home.servicepresentation.ui.main.presentation.activities.main.MainActivity
 import com.home.servicepresentation.ui.main.presentation.fragments.base.BaseFragment
 import com.home.servicepresentation.ui.main.utils.imageDownloadTask
@@ -53,12 +52,11 @@ class DetailFragment : BaseFragment() {
         }
     }
 
-    private fun callApi(){
+    private fun callApi() {
         if ((activity as MainActivity).viewModel.liveDataDetail.value?.data == null) {
             loadingViewShow()
             (activity as MainActivity).viewModel.getDetailData(requireContext())
-        }
-        else {
+        } else {
             analyzeProblem((activity as MainActivity).viewModel.liveDataDetail.value)
         }
     }
@@ -81,22 +79,33 @@ class DetailFragment : BaseFragment() {
 
     private fun updateUI(detailModel: DetailModel) {
         if (this.isAdded) {
-            imageDownloadTask(image, detailModel.image?.originalUrl4x, liveDataMSG, liveDataIMG)
+            loadImage(detailModel)
             title.text = detailModel.title
             slogan.text = detailModel.slogan
             description.text = detailModel.description
             renderListOfGrid(detailModel.data)
-            main.visibility=View.VISIBLE
+            main.visibility = View.VISIBLE
         }
     }
 
+    private fun loadImage(detailModel: DetailModel) {
+        imageDownloadTask(image, detailModel.image?.originalUrl4x, liveDataMSG, liveDataIMG)
+        imageDownloadTask(image, detailModel.image?.originalUrl3x, liveDataMSG, liveDataIMG)
+        imageDownloadTask(image, detailModel.image?.originalUrl2x, liveDataMSG, liveDataIMG)
+        imageDownloadTask(image, detailModel.image?.originalUrl, liveDataMSG, liveDataIMG)
+    }
+
     private fun analyzeProblem(problem: BaseModel<DetailModel>?) {
-        main.visibility=View.GONE
-        when(problem?.code){
+        main.visibility = View.GONE
+        when (problem?.code) {
             "200" -> {
             }
             else -> {
-                Toast.makeText(requireContext(), problem?.code+"-"+problem?.msg, Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    problem?.code + "-" + problem?.msg,
+                    Toast.LENGTH_LONG
+                ).show()
                 include_problem.visibility = View.VISIBLE
             }
         }
@@ -109,14 +118,14 @@ class DetailFragment : BaseFragment() {
 
     private fun loadingViewShow() {
         if (isAdded) {
-            main.visibility=View.GONE
+            main.visibility = View.GONE
             loading_view.show()
         }
     }
 
     private fun loadingViewHide() {
         if (isAdded) {
-            main.visibility=View.VISIBLE
+            main.visibility = View.VISIBLE
             loading_view.hide()
         }
     }

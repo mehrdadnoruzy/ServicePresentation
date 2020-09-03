@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.home.servicepresentation.R
-import com.home.servicepresentation.ui.main.data.network.Network
-import com.home.servicepresentation.ui.main.data.repository.Repository
-import com.home.servicepresentation.ui.main.domain.DetailUsecase
-import com.home.servicepresentation.ui.main.domain.HomeUsecase
+import com.home.servicepresentation.data.network.Network
+import com.home.servicepresentation.data.repository.Repository
+import com.home.servicepresentation.domain.DetailUsecase
+import com.home.servicepresentation.domain.HomeUsecase
 import com.home.servicepresentation.ui.main.presentation.fragments.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {

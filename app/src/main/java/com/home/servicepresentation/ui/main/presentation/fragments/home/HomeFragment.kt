@@ -5,10 +5,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.home.servicepresentation.R
-import com.home.servicepresentation.ui.main.data.models.base.BaseModel
-import com.home.servicepresentation.ui.main.data.models.home.CategoriesItem
-import com.home.servicepresentation.ui.main.data.models.home.HomeModel
-import com.home.servicepresentation.ui.main.data.models.home.PromotionsItem
+import com.home.servicepresentation.data.models.base.BaseModel
+import com.home.servicepresentation.data.models.home.CategoriesItem
+import com.home.servicepresentation.data.models.home.HomeModel
+import com.home.servicepresentation.data.models.home.PromotionsItem
 import com.home.servicepresentation.ui.main.presentation.activities.main.MainActivity
 import com.home.servicepresentation.ui.main.presentation.fragments.base.BaseFragment
 import com.home.servicepresentation.ui.main.presentation.fragments.detail.DetailFragment
