@@ -21,9 +21,9 @@ import kotlinx.android.synthetic.main.problem.*
 import java.util.*
 
 class DetailFragment : BaseFragment() {
-    var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
-    var liveDataMSG: MutableLiveData<String> = MutableLiveData()
-    private var task: AsyncTask<*, *, *>? = null
+
+    private var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
+    private var liveDataMSG: MutableLiveData<String> = MutableLiveData()
     override fun getLayoutId(): Int = R.layout.detail_fragment
     private lateinit var adapterGrid: DetailAdapter
 
@@ -40,10 +40,10 @@ class DetailFragment : BaseFragment() {
         }
         if (savedInstanceState == null) {
             setupGridSegment()
-            liveDataMSG.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            liveDataMSG.observe(viewLifecycleOwner, {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             })
-            (activity as MainActivity).viewModel.liveDataDetail.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            (activity as MainActivity).viewModel.liveDataDetail.observe(viewLifecycleOwner, {
                 loadingViewHide()
                 if (it?.code == "200")
                     updateUI(it.data!!)
@@ -74,14 +74,14 @@ class DetailFragment : BaseFragment() {
         recyclerViewGrid.setHasFixedSize(true)
         adapterGrid = DetailAdapter(arrayListOf())
         recyclerViewGrid.adapter = adapterGrid
-        adapterGrid.liveDataMSG.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        adapterGrid.liveDataMSG.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
     }
 
-    fun updateUI(detailModel: DetailModel) {
+    private fun updateUI(detailModel: DetailModel) {
         if (this.isAdded) {
-            imageDownloadTask(image, detailModel?.image?.originalUrl4x, liveDataMSG, liveDataIMG)
+            imageDownloadTask(image, detailModel.image?.originalUrl4x, liveDataMSG, liveDataIMG)
             title.text = detailModel.title
             slogan.text = detailModel.slogan
             description.text = detailModel.description
@@ -90,19 +90,15 @@ class DetailFragment : BaseFragment() {
         }
     }
 
-    fun analyzeProblem(problem: BaseModel<DetailModel>?) {
+    private fun analyzeProblem(problem: BaseModel<DetailModel>?) {
         main.visibility=View.GONE
         when(problem?.code){
-            "200" -> {}//updateUI(problem.data!!)
-            "403" -> {
-                Toast.makeText(requireContext(), problem.msg, Toast.LENGTH_SHORT).show()
+            "200" -> {
+            }
+            else -> {
+                Toast.makeText(requireContext(), problem?.code+"-"+problem?.msg, Toast.LENGTH_LONG).show()
                 include_problem.visibility = View.VISIBLE
             }
-            "600" -> {
-                Toast.makeText(requireContext(), problem.msg, Toast.LENGTH_SHORT).show()
-                include_problem.visibility = View.VISIBLE
-            }
-            else -> Toast.makeText(requireContext(), problem?.code+"-"+problem?.msg, Toast.LENGTH_LONG).show()
         }
     }
 

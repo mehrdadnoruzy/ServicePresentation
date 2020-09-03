@@ -17,9 +17,11 @@ import kotlinx.android.synthetic.main.home_item_service.view.*
 class ServiceAdapter(
     private val categories: ArrayList<CategoriesItem?>?
 ) : RecyclerView.Adapter<ServiceAdapter.ViewHolder>() {
+
     var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
     var liveDataMSG: MutableLiveData<String> = MutableLiveData()
     var liveDataClicked: MutableLiveData<Boolean> = MutableLiveData()
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(

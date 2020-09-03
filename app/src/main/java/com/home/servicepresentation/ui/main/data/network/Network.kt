@@ -9,6 +9,7 @@ import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
 import com.home.servicepresentation.ui.main.data.models.home.HomeModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import java.io.BufferedInputStream
 import java.io.BufferedReader
 import java.io.IOException
@@ -53,26 +54,21 @@ class Network() {
     }
 
     private fun getDataApi(url: String): String {
-
         try {
-            val url = URL(url)
-            val httpClient = url.openConnection() as HttpURLConnection
+            val httpClient = URL(url).openConnection() as HttpURLConnection
             httpClient.connectTimeout = 5000
             httpClient.readTimeout = 5000
             return if (httpClient.responseCode == HttpURLConnection.HTTP_OK) {
                 try {
-                    val stream = BufferedInputStream(httpClient.inputStream)
-                    val data: String = readStream(inputStream = stream)
-                    data
+                    readStream(inputStream = BufferedInputStream(httpClient.inputStream))
                 } catch (e: Exception) {
-                    ERROR+":"+ e.message +":"+"700"
+                    ERROR + ":" + e.message + ":" + "700"
                 } finally {
                     httpClient.disconnect()
                 }
-            } else ERROR+":"+ httpClient.responseMessage + ":" + httpClient.responseCode
-
+            } else ERROR + ":" + httpClient.responseMessage + ":" + httpClient.responseCode
         } catch (e: Exception) {
-            return ERROR+":"+ e.message +":"+"800"
+            return ERROR + ":" + e.message + ":" + "800"
         }
     }
 
@@ -107,6 +103,18 @@ class Network() {
         else BaseModel(
             code = data.split(":")[2],
             msg = data.split(":")[1],
+            data = null
+        )
+    }
+    //return readStream(inputStream = BufferedInputStream(httpClient.errorStream))
+    private fun createErrorBodyModel(data: String): BaseModel<*>? {
+        val jObject = JSONObject(data)
+        val status = jObject.getString("status")
+        val message = jObject.getString("message")
+
+        return BaseModel(
+            code = status,
+            msg = message,
             data = null
         )
     }

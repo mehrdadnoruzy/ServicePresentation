@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.home_item_service.view.*
 class PromotionAdapter(
     private val promotions: ArrayList<PromotionsItem?>?
 ) : RecyclerView.Adapter<PromotionAdapter.ViewHolder>() {
+
     var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
     var liveDataMSG: MutableLiveData<String> = MutableLiveData()
 

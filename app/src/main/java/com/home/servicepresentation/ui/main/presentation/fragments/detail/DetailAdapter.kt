@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.detaile_item_grid.view.*
 class DetailAdapter(
     private val data: ArrayList<DataItem?>?
 ) : RecyclerView.Adapter<DetailAdapter.ViewHolder>() {
+
     var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
     var liveDataMSG: MutableLiveData<String> = MutableLiveData()
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -3,7 +3,6 @@ package com.home.servicepresentation.ui.main.presentation.fragments.home
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.home.servicepresentation.R
 import com.home.servicepresentation.ui.main.data.models.base.BaseModel
@@ -38,7 +37,7 @@ class HomeFragment : BaseFragment() {
         if (savedInstanceState == null) {
             setupServiceSegment()
             setupPromotionSegment()
-            (activity as MainActivity).viewModel.liveDataHome.observe(viewLifecycleOwner, Observer {
+            (activity as MainActivity).viewModel.liveDataHome.observe(viewLifecycleOwner, {
                 loadingViewHide()
                 if (it?.code == "200")
                     updateUI(it.data!!)
@@ -62,10 +61,10 @@ class HomeFragment : BaseFragment() {
         adapterService = ServiceAdapter(arrayListOf())
         recyclerViewService.adapter = adapterService
         LinearSnapHelper().attachToRecyclerView(recyclerViewService)
-        adapterService.liveDataMSG.observe(viewLifecycleOwner, Observer {
+        adapterService.liveDataMSG.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
-        adapterService.liveDataClicked.observe(viewLifecycleOwner, Observer {
+        adapterService.liveDataClicked.observe(viewLifecycleOwner, {
             itemServiceClicked()
         })
     }
@@ -75,7 +74,7 @@ class HomeFragment : BaseFragment() {
         adapterPromotion = PromotionAdapter(arrayListOf())
         recyclerViewPromotion.adapter = adapterPromotion
         LinearSnapHelper().attachToRecyclerView(recyclerViewPromotion)
-        adapterPromotion.liveDataMSG.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        adapterPromotion.liveDataMSG.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
     }
@@ -95,20 +94,13 @@ class HomeFragment : BaseFragment() {
         when (problem?.code) {
             "200" -> {
             }
-            "403" -> {
-                Toast.makeText(requireContext(), problem.msg, Toast.LENGTH_SHORT).show()
-                include_problem.visibility = View.VISIBLE
-            }
-            "600" -> {
-                Toast.makeText(requireContext(), problem.msg, Toast.LENGTH_SHORT).show()
-                include_problem.visibility = View.VISIBLE
-            }
             else -> {
                 Toast.makeText(
                     requireContext(),
                     problem?.code + "-" + problem?.msg,
                     Toast.LENGTH_LONG
                 ).show()
+                include_problem.visibility = View.VISIBLE
             }
         }
     }
@@ -144,9 +136,5 @@ class HomeFragment : BaseFragment() {
                 DetailFragment.newInstance()
             )?.addToBackStack(DetailFragment.javaClass.name)
             ?.commit()
-    }
-
-    private fun itemPromotionClicked() {
-
     }
 }
