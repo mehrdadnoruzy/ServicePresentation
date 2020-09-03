@@ -25,35 +25,28 @@ class Network() {
 
     private val baseUrl = "https://api-dot-rafiji-staging.appspot.com/customer/v2/"
 
-
     suspend fun getHomeData(context: Context): BaseModel<HomeModel>? {
-
         return withContext(Dispatchers.Default) {
-            val result = callApi(context) {
-                getDataApi("${baseUrl}home")
-            }
-            createHomeModel(result)
+            createHomeModel(callApi(context) {
+                getApiDataOf("${baseUrl}home")
+            })
         }
     }
 
     suspend fun getDetailData(context: Context): BaseModel<DetailModel>? {
-
         return withContext(Dispatchers.Default) {
-            val result = callApi(context) {
-                getDataApi("${baseUrl}categories/carwash/services")
-            }
-            createDetailModel(result)
+            createDetailModel(callApi(context) {
+                getApiDataOf("${baseUrl}categories/carwash/services")
+            })
         }
     }
 
-
     private fun callApi(context: Context, apiCall: () -> String): String {
-        return if (checkConnectivity(context)) {
-            apiCall.invoke()
-        } else "$ERROR:Check your internet connection and try again.:600"
+        return if (checkConnectivity(context)) apiCall.invoke()
+            else "$ERROR:Check your internet connection and try again.:600"
     }
 
-    private fun getDataApi(url: String): String {
+    private fun getApiDataOf(url: String): String {
         try {
             val httpClient = URL(url).openConnection() as HttpURLConnection
             httpClient.connectTimeout = 5000
@@ -73,9 +66,8 @@ class Network() {
     }
 
     private fun readStream(inputStream: BufferedInputStream): String {
-        val bufferedReader = BufferedReader(InputStreamReader(inputStream))
         val stringBuilder = StringBuilder()
-        bufferedReader.forEachLine { stringBuilder.append(it) }
+        BufferedReader(InputStreamReader(inputStream)).forEachLine { stringBuilder.append(it) }
         return stringBuilder.toString()
     }
 
