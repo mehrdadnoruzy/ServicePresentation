@@ -24,7 +24,6 @@ class DetailAdapter(
         fun bind(
             dataItem: DataItem?
         ) {
-            //DownloadImageTask(itemView.image, messenger).execute(dataItem?.image?.originalUrl)
             itemView.title.text = dataItem?.title
             itemView.subtitle.text = dataItem?.subTitle
             itemView.short_description.text = dataItem?.shortDescription
