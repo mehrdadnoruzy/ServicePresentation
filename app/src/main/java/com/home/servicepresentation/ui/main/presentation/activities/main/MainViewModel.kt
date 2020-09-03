@@ -7,18 +7,21 @@ import com.home.servicepresentation.data.models.detail.DetailModel
 import com.home.servicepresentation.data.models.home.HomeModel
 import com.home.servicepresentation.domain.DetailUsecase
 import com.home.servicepresentation.domain.HomeUsecase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class MainViewModel(private val homeUsecase: HomeUsecase,
-                    private val detailUsecase: DetailUsecase
-): ViewModel() {
+class MainViewModel(
+    private val homeUsecase: HomeUsecase,
+    private val detailUsecase: DetailUsecase
+) : ViewModel() {
 
     var liveDataHome: MutableLiveData<BaseModel<HomeModel>?> = MutableLiveData()
     var liveDataDetail: MutableLiveData<BaseModel<DetailModel>?> = MutableLiveData()
 
     fun getHomeData() {
         GlobalScope.launch(Dispatchers.Main) {
-            val result : BaseModel<HomeModel>? = homeUsecase.executeAsync()
+            val result: BaseModel<HomeModel>? = homeUsecase.executeAsync()
             result?.apply {
                 liveDataHome.value = result
             }
@@ -27,7 +30,7 @@ class MainViewModel(private val homeUsecase: HomeUsecase,
 
     fun getDetailData() {
         GlobalScope.launch(Dispatchers.Main) {
-            val result : BaseModel<DetailModel>? = detailUsecase.executeAsync()
+            val result: BaseModel<DetailModel>? = detailUsecase.executeAsync()
             result?.apply {
                 liveDataDetail.value = this
             }

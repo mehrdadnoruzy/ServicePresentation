@@ -7,7 +7,7 @@ class MainViewModelProviderFactory<V : Any>(private var viewModel: V) : ViewMode
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(viewModel.javaClass)) {
-            return  viewModel as T
+            return viewModel as T
         }
         throw IllegalArgumentException("Unknown class name")
     }

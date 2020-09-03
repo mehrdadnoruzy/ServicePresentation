@@ -1,21 +1,18 @@
-package com.home.servicepresentation.ui.main.data.network
+package com.home.servicepresentation.data
 
 import com.google.gson.JsonSyntaxException
-import com.home.servicepresentation.ui.main.data.models.base.BaseModel
-import com.home.servicepresentation.ui.main.data.models.detail.DetailModel
-import com.home.servicepresentation.ui.main.data.models.home.HomeModel
-import org.hamcrest.CoreMatchers
+import com.home.servicepresentation.data.models.base.BaseModel
+import com.home.servicepresentation.data.models.detail.DetailModel
+import com.home.servicepresentation.data.models.home.HomeModel
+import com.home.servicepresentation.data.network.CheckNetwork
+import com.home.servicepresentation.data.network.Network
 import org.hamcrest.CoreMatchers.instanceOf
-import org.hamcrest.core.IsInstanceOf
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import java.io.BufferedInputStream
 import java.io.FileNotFoundException
-import java.net.HttpURLConnection
 import java.net.MalformedURLException
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
 
 class NetworkTest {
 
@@ -28,7 +25,7 @@ class NetworkTest {
 
     @Before
     fun setup(){
-        network = Network()
+        network = Network.getInstance(CheckNetwork.getInstance())
     }
 
     @Test

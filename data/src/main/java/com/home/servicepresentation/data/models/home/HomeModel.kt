@@ -61,61 +61,61 @@ data class CategoriesItem(
 @Parcelize
 data class ShortDescriptions(
 
-	val ar: String? = null,
+    val ar: String? = null,
 
-	val en: String? = null
+    val en: String? = null
 ) : Parcelable
 
 @Parcelize
 data class Slogans(
 
-	val ar: String? = null,
+    val ar: String? = null,
 
-	val en: String? = null
+    val en: String? = null
 ) : Parcelable
 
 @Parcelize
 data class Image(
 
-	val originalUrl4x: String? = null,
+    val originalUrl4x: String? = null,
 
-	val originalUrlSVG: String? = null,
+    val originalUrlSVG: String? = null,
 
-	val originalUrl3x: String? = null,
+    val originalUrl3x: String? = null,
 
-	val originalUrlPDF: String? = null,
+    val originalUrlPDF: String? = null,
 
-	val originalUrl2x: String? = null,
+    val originalUrl2x: String? = null,
 
-	val originalUrl: String? = null
+    val originalUrl: String? = null
 ) : Parcelable
 
 @Parcelize
 data class PromotionsItem(
 
-	val image: Image? = null
+    val image: Image? = null
 ) : Parcelable
 
 @Parcelize
 data class SubTitles(
 
-	val ar: String? = null,
+    val ar: String? = null,
 
-	val en: String? = null
+    val en: String? = null
 ) : Parcelable
 
 @Parcelize
 data class Titles(
 
-	val ar: String? = null,
+    val ar: String? = null,
 
-	val en: String? = null
+    val en: String? = null
 ) : Parcelable
 
 @Parcelize
 data class Descriptions(
 
-	val ar: String? = null,
+    val ar: String? = null,
 
-	val en: String? = null
+    val en: String? = null
 ) : Parcelable

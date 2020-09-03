@@ -18,7 +18,24 @@ class MainActivity : AppCompatActivity() {
     val viewModel: MainViewModel by lazy {
         ViewModelProvider(
             this,
-            MainViewModelProviderFactory(MainViewModel(HomeUsecase(Repository.getInstance(Network.getInstance(CheckNetwork.getInstance(this)))), DetailUsecase(Repository.getInstance(Network.getInstance(CheckNetwork.getInstance(this))))))
+            MainViewModelProviderFactory(
+                MainViewModel(
+                    HomeUsecase(
+                        Repository.getInstance(
+                            Network.getInstance(
+                                CheckNetwork.getInstance(this)
+                            )
+                        )
+                    ),
+                    DetailUsecase(
+                        Repository.getInstance(
+                            Network.getInstance(
+                                CheckNetwork.getInstance(this)
+                            )
+                        )
+                    )
+                )
+            )
         ).get(MainViewModel::class.java)
     }
 

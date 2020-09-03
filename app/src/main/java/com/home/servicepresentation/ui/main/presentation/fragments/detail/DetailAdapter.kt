@@ -1,11 +1,11 @@
 package com.home.servicepresentation.ui.main.presentation.fragments.detail
 
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.home.servicepresentation.R
@@ -17,7 +17,7 @@ class DetailAdapter(
     private val data: ArrayList<DataItem?>?
 ) : RecyclerView.Adapter<DetailAdapter.ViewHolder>() {
 
-    var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
+    var liveDataIMG: MutableLiveData<View> = MutableLiveData()
     var liveDataMSG: MutableLiveData<String> = MutableLiveData()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -51,10 +51,14 @@ class DetailAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        liveDataIMG.observe(parent.context as LifecycleOwner, {
+            it?.loading_image?.visibility = View.GONE
+        })
+        return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.detaile_item_grid, parent, false)
         )
+    }
 
     override fun getItemCount(): Int = data?.size ?: 0
 
@@ -63,26 +67,26 @@ class DetailAdapter(
         loadImage(holder, position)
     }
 
-    private fun loadImage(holder: ViewHolder, position: Int){
+    private fun loadImage(holder: ViewHolder, position: Int) {
         imageDownloadTask(
             holder.itemView.image,
             data?.get(position)?.image?.originalUrl,
-            liveDataMSG, liveDataIMG
+            liveDataMSG, liveDataIMG, holder.itemView
         )
         imageDownloadTask(
             holder.itemView.image,
             data?.get(position)?.image?.originalUrl2x,
-            liveDataMSG, liveDataIMG
+            liveDataMSG, liveDataIMG, holder.itemView
         )
         imageDownloadTask(
             holder.itemView.image,
             data?.get(position)?.image?.originalUrl3x,
-            liveDataMSG, liveDataIMG
+            liveDataMSG, liveDataIMG, holder.itemView
         )
         imageDownloadTask(
             holder.itemView.image,
             data?.get(position)?.image?.originalUrl4x,
-            liveDataMSG, liveDataIMG
+            liveDataMSG, liveDataIMG, holder.itemView
         )
     }
 

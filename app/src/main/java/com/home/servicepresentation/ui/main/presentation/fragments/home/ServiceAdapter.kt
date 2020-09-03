@@ -1,11 +1,11 @@
 package com.home.servicepresentation.ui.main.presentation.fragments.home
 
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.home.servicepresentation.R
@@ -14,13 +14,12 @@ import com.home.servicepresentation.ui.main.utils.imageDownloadTask
 import com.home.servicepresentation.ui.main.utils.listenToClick
 import kotlinx.android.synthetic.main.home_item_service.view.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ServiceAdapter(
     private val categories: ArrayList<CategoriesItem?>?
 ) : RecyclerView.Adapter<ServiceAdapter.ViewHolder>() {
 
-    var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
+    var liveDataIMG: MutableLiveData<View> = MutableLiveData()
     var liveDataMSG: MutableLiveData<String> = MutableLiveData()
     var liveDataClicked: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -42,8 +41,11 @@ class ServiceAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        liveDataIMG.observe(parent.context as LifecycleOwner, {
+            it?.loading_image?.visibility = View.GONE
+        })
+        return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.home_item_service, parent, false)
         )
             .listenToClick { pos, type, title ->
@@ -51,7 +53,7 @@ class ServiceAdapter(
                 if (title.toLowerCase(Locale.ROOT).trim().equals("carwash"))
                     liveDataClicked.value = true
             }
-
+    }
 
     override fun getItemCount(): Int = categories?.size ?: 0
 
@@ -60,30 +62,34 @@ class ServiceAdapter(
         loadImage(holder, position)
     }
 
-    private fun loadImage(holder: ViewHolder, position: Int){
+    private fun loadImage(holder: ViewHolder, position: Int) {
         imageDownloadTask(
             holder.itemView.image,
             categories?.get(position)?.image?.originalUrl,
             liveDataMSG,
-            liveDataIMG
+            liveDataIMG,
+            holder.itemView
         )
         imageDownloadTask(
             holder.itemView.image,
             categories?.get(position)?.image?.originalUrl2x,
             liveDataMSG,
-            liveDataIMG
+            liveDataIMG,
+            holder.itemView
         )
         imageDownloadTask(
             holder.itemView.image,
             categories?.get(position)?.image?.originalUrl3x,
             liveDataMSG,
-            liveDataIMG
+            liveDataIMG,
+            holder.itemView
         )
         imageDownloadTask(
             holder.itemView.image,
             categories?.get(position)?.image?.originalUrl4x,
             liveDataMSG,
-            liveDataIMG
+            liveDataIMG,
+            holder.itemView
         )
     }
 

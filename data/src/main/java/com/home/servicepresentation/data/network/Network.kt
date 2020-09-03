@@ -1,6 +1,5 @@
 package com.home.servicepresentation.data.network
 
-import android.content.Context
 import com.google.gson.GsonBuilder
 import com.home.servicepresentation.data.SingletonHolder
 import com.home.servicepresentation.data.models.base.BaseModel
@@ -41,10 +40,10 @@ class Network private constructor(private val checkNetwork: CheckNetwork) {
 
     private fun callApi(apiCall: () -> String): String {
         return if (checkNetwork.checkConnectivity()) apiCall.invoke()
-            else "$ERROR:600:Check your internet connection and try again"
+        else "$ERROR:600:Check your internet connection and try again"
     }
 
-     fun getApiDataOf(url: String): String {
+    fun getApiDataOf(url: String): String {
         try {
             val httpClient = openConnection(url)
             return if (httpClient.responseCode == HttpURLConnection.HTTP_OK) {
@@ -61,7 +60,7 @@ class Network private constructor(private val checkNetwork: CheckNetwork) {
         }
     }
 
-    fun openConnection(url: String) : HttpURLConnection{
+    fun openConnection(url: String): HttpURLConnection {
         val httpClient = URL(url).openConnection() as HttpURLConnection
         httpClient.connectTimeout = 5000
         httpClient.readTimeout = 5000
@@ -101,6 +100,7 @@ class Network private constructor(private val checkNetwork: CheckNetwork) {
             data = null
         )
     }
+
     //return readStream(inputStream = BufferedInputStream(httpClient.errorStream))
     private fun createErrorBodyModel(data: String): BaseModel<*>? {
         val jObject = JSONObject(data)

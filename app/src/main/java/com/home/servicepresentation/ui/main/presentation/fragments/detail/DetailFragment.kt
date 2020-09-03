@@ -1,6 +1,5 @@
 package com.home.servicepresentation.ui.main.presentation.fragments.detail
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -13,15 +12,13 @@ import com.home.servicepresentation.ui.main.presentation.activities.main.MainAct
 import com.home.servicepresentation.ui.main.presentation.fragments.base.BaseFragment
 import com.home.servicepresentation.ui.main.utils.imageDownloadTask
 import kotlinx.android.synthetic.main.detail_fragment.*
-import kotlinx.android.synthetic.main.detail_fragment.include_problem
-import kotlinx.android.synthetic.main.detail_fragment.loading_view
-import kotlinx.android.synthetic.main.detail_fragment.main
+import kotlinx.android.synthetic.main.detaile_item_grid.view.*
 import kotlinx.android.synthetic.main.problem.*
 import java.util.*
 
 class DetailFragment : BaseFragment() {
 
-    private var liveDataIMG: MutableLiveData<Bitmap> = MutableLiveData()
+    private var liveDataIMG: MutableLiveData<View> = MutableLiveData()
     private var liveDataMSG: MutableLiveData<String> = MutableLiveData()
     override fun getLayoutId(): Int = R.layout.detail_fragment
     private lateinit var adapterGrid: DetailAdapter
@@ -89,10 +86,13 @@ class DetailFragment : BaseFragment() {
     }
 
     private fun loadImage(detailModel: DetailModel) {
-        imageDownloadTask(image, detailModel.image?.originalUrl4x, liveDataMSG, liveDataIMG)
-        imageDownloadTask(image, detailModel.image?.originalUrl3x, liveDataMSG, liveDataIMG)
-        imageDownloadTask(image, detailModel.image?.originalUrl2x, liveDataMSG, liveDataIMG)
-        imageDownloadTask(image, detailModel.image?.originalUrl, liveDataMSG, liveDataIMG)
+        liveDataIMG.observe(viewLifecycleOwner, {
+            it?.loading_image?.visibility = View.GONE
+        })
+        imageDownloadTask(image, detailModel.image?.originalUrl4x, liveDataMSG, liveDataIMG, view!!)
+        imageDownloadTask(image, detailModel.image?.originalUrl3x, liveDataMSG, liveDataIMG, view!!)
+        imageDownloadTask(image, detailModel.image?.originalUrl2x, liveDataMSG, liveDataIMG, view!!)
+        imageDownloadTask(image, detailModel.image?.originalUrl, liveDataMSG, liveDataIMG, view!!)
     }
 
     private fun analyzeProblem(problem: BaseModel<DetailModel>?) {

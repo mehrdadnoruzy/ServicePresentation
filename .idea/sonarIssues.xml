@@ -93,6 +93,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/activities/main/MainViewModelProviderFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/home/servicepresentation/ui/main/presentation/activities/main/MyViewModel.kt">
           <value>
             <set />
@@ -558,6 +563,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/models/base/BaseModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/models/detail/DetailModel.kt">
           <value>
             <set />
@@ -584,6 +594,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/data/src/main/java/com/home/servicepresentation/data/repository/SingletonHolder.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/data/src/test/java/com/home/servicepresentation/data/NetworkTest.kt">
           <value>
             <set />
           </value>
