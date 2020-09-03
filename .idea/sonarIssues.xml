@@ -553,6 +553,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/data/src/androidTest/java/com/home/servicepresentation/data/ExampleInstrumentedTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/data/src/main/AndroidManifest.xml">
           <value>
             <set />
